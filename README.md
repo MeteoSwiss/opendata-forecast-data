@@ -22,38 +22,35 @@ The following datsets will be provided next:
 - ...
 - ...
 
-
-<!-- The INCA forecasts come .
-
-For more information see the metadata in each NetCDF-File. -->
-
-...
-
 ### 1.1. Data granularity, update frequency, format and volume
 Data granularity is every 10min. Update frequency for the period 0h- +6h is specified per dataset in the table below.
 
-Data format is [`NetCDF (.nc)`](https://www.unidata.ucar.edu/software/netcdf).
+Data format is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
 
 | Dataset | Update frequency | (Example!) data file | Productive version file name | Estimated volume per file (MB) | 
 |:----- | ----- |:----- |:----- | ----- |
 | Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | every 10min | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` | 1.7 |
 |       |       |       |       |       |
-| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | every 10min | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` | 0.4 | 
+| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | every 10min | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_RS-INCA_(date and time code).nc` | 0.4 | 
 
-### Parameter metadata
-*See (example!) parameter metadata files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity): [`...`](...) and [`...`](...).*
+### 1.2. Parameter metadata
+Parameter metadata is part of each NetCDF-File. See (example!) data files in the table above.
 
 <!-- ### Codes -->
 <!-- ... -->
 
-### Station metadata
-*See (example!) [station metadata file](...).*
+### 1.3. Coordinate system
+The coordinate system is Swiss LV95 EPSG:2056.
 
-### Data visualisation
+### 1.4. Data visualisation
 See e.g. MeteoSwiss' [...](...).
+
+<br>
 
 ## 2. Forecast data
 ...
+
+<br>
 
 ## 3. Local forecast data
 ... 
@@ -78,3 +75,5 @@ See (example!) [station metadata file](...).
 
 ### Data visualisation
 See e.g. MeteoSwiss' [...](...).
+
+<br>
