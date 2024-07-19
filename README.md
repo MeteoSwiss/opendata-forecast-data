@@ -34,11 +34,11 @@ Data granularity is `every 10min`. Update frequency for the period 0h- +6h is sp
 
 Data format is [`NetCDF (.nc)`](https://www.unidata.ucar.edu/software/netcdf).
 
-| Dataset | Update frequency | Estimated volume per file (MB) | (Example!) data file | Productive version file name |
+| Dataset | Update frequency | (Example!) data file | Productive version file name | Estimated volume per file (MB) | 
 | ----- | ----- | ----- | ----- | ----- |
-| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | `every 10min |  1.7  | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` |
+| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | `every 10min` | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` | 1.7 |
 |       |       |       |       |       |
-| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` |  |
+| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` | 0.4 | 
 
 ### Parameter metadata
 *See (example!) parameter metadata files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity): [`...`](...) and [`...`](...).*
