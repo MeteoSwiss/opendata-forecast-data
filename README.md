@@ -44,7 +44,7 @@ Estimated volumes per file and (example!) data files:
 |-----|-----|-----|-----|
 | Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) |     |     |     |
 |     |     |     |     |
-| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc] | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv`.|
+| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv`.|
 
 ### Parameter metadata
 *See (example!) parameter metadata files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity): [`...`](...) and [`...`](...).*
