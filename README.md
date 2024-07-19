@@ -10,16 +10,39 @@
 ---
 
 ## 1. Short-term forecast data
-... 
+[Nowcasting](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/nowcasting.html) involves high spatial and temporal resolution forecasts of weather developments for the next few minutes and up to a maximum of six hours ahead. MeteoSwiss uses these short-term forecasts to, among other things, predict thunderstorms, hail and heavy rainfall.
+
+
+
+As MeteoSwiss is planning to replace the current 'INCA' nowcasting software, the following datasets are available from the start of our open data provision:
+- Precipitation (10min values): quantitative chain (based on CombiPrecip, RR)
+- ...
+- ...
+
+The following datsets will be provided next:
+- Snowfall (10min values): quantitative chain (based on CombiPrecip, RS)
+- ...
+- ...
+
+
+<!-- The INCA forecasts come for the period 0h- +6h.
+
+The data is being updated according to the respective update frequency. 
+
+For more information see the metadata in each NetCDF-File. -->
 
 ...
 
 ### Data granularity, update frequency, format and volume
 There are files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity) `...`, `...`, `...`, `...` *and [update frequency](https://github.com/MeteoSwiss/opendata-download/blob/main/README.md#update-frequency) hourly (`now`), daily (`recent`) or yearly (`historical`) for each station*.
 
-Data format is [`...`](...) with an estimated volume of ... MB per file.
+Data format of all files is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
 
-See (example!) data files: [`...`](...).
+Estimated volumes per file and (example!) data files:
+| Dataset | Estimated volume per file (MB) | (Example!) data file | 
+|-----|-----|-----|
+| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) |     |     |
+| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 |    | 
 
 ### Parameter metadata
 *See (example!) parameter metadata files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity): [`...`](...) and [`...`](...).*
