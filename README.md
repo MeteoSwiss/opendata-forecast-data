@@ -41,10 +41,10 @@ Data format of all files is [`NetCDF`](https://www.unidata.ucar.edu/software/net
 #### 1.1.1. (Example!) data files
 Estimated volumes per file and (example!) data files:
 | Dataset | Estimated volume per file (MB) | (Example!) data file | Productive version file name |
-|-----|-----|-----|-----|
-| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) |     |     |     |
+| :----- | -----: | :----- | :----- |
+| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | 1.7 | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` |
 |     |     |     |     |
-| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv`.|
+| Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` |
 
 ### Parameter metadata
 *See (example!) parameter metadata files of [data granularity](https://github.com/MeteoSwiss/opendata-download?tab=readme-ov-file#data-granularity): [`...`](...) and [`...`](...).*
