@@ -42,7 +42,7 @@ Data format of all files is [`NetCDF`](https://www.unidata.ucar.edu/software/net
 Estimated volumes per file and (example!) data files:
 | Dataset | Estimated volume per file (MB) | (Example!) data file | Productive version file name |
 | :----- | -----: | :----- | :----- |
-| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | 1.7 | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` |
+| Precipitation (10min values): quantitative chain (based on CombiPrecip, RR) | 1.7 | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` |
 |     |     |     |     |
 | Snowfall (10min values): quantitative chain (based on CombiPrecip, RS) | 0.4 | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_(product name)_(granularity code)_(update frequency code).csv` |
 
