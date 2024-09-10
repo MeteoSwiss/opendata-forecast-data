@@ -6,7 +6,7 @@
 The following forecast data are available:
 
 1. [Short-term forecast data](#1-short-term-forecast-data) :yellow_circle: *documentation upcoming*
-2. [Forecast data](#2-forecast-data) :yellow_circle: *documentation upcoming*
+2. [Numerical weather forecasting model](#2-numerical-weather-forecasting-model) :yellow_circle: *documentation upcoming*
 3. [Local forecast data](#3-local-forecast-data) :yellow_circle: *documentation upcoming*
 
 ---
@@ -53,7 +53,7 @@ See e.g. MeteoSwiss' [...](...).
 
 <br>
 
-## 2. Forecast data
+## 2. Numerical weather forecasting model
 ...
 
 <br>
