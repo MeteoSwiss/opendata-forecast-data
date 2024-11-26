@@ -9,6 +9,8 @@ The following forecast data are available:
 2. [Numerical weather forecasting model](#2-numerical-weather-forecasting-model) :yellow_circle: *documentation upcoming*
 3. [Local forecast data](#3-local-forecast-data) :yellow_circle: *documentation upcoming*
 
+<br>
+
 ---
 
 ## 1. Short-term forecast data
