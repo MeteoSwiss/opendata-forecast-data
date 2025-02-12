@@ -60,20 +60,23 @@ See e.g. MeteoSwiss' [...](...).
 There are two different numerical weather forecasting models, ICON-CH1-EPS and ICON-CH2-EPS, used at MeteoSwiss for the
 future evolution of the athmospheric conditions in Switzerland and its surroundings. ICON-CH1-EPS provides the weather
 forecast for the next day, while ICON-CH2-EPS calculates the prognosis for the following 8 days. Both models include
-[ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html). The list below shows an overview of the two models.
+[ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
+The list in section [2.1](###2.2.-Parameter-metadata) shows an overview of the two models.
+
+
+### 2.1. Data granularity, update frequency, format, volume and more
+Data granularity is every hour, the update frequency every 3 or 6 (CH1 and 2 different?) hours and the data is a collection of GRIB files. The volume for each file is defined below.
 
 |           | **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
+| collection name | ogd-forecasting-icon-ch1 | ogd-forecasting-icon-ch2 |
 | forecast period | 33 hours | 120 hours (5 days)|
 | ensemble runs | 8 per day | 4 per day|
 | horizontal grid size | 1 km | 2.1 km |
 | ensemble members | 11 | 21 |
 
 
-### 1.1. Data granularity, update frequency, format and volume
-Data granularity is every hour, the update frequency every 3 or 6 (CH1 and 2 different?) hours and the data is a collection of GRIB files. The volume for each file is defined below.
-
-### 1.2. Parameter metadata
+### 2.2. Parameter metadata
 The parameter metadata is stated in the list of [variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX).
 
 Here are some examples:
@@ -85,11 +88,13 @@ Here are some examples:
 |TOT_PREC | kg $m^{-2}$| Total precipitation| Single Level| | | | |
 
 
-### 1.3. Coordinate system
+### 2.3. Coordinate system
 
-The coordinate system is the native grid.
+The coordinate system is the native icosahedral mesh.
 
-### 1.4. Data visualisation
+### 2.4. Data visualisation
+
+See [jupyter-notebook examples] ().
 
 <br>
 
