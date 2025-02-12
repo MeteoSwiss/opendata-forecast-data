@@ -61,25 +61,10 @@ There are two different numerical weather forecasting models, ICON-CH1-EPS and I
 future evolution of the athmospheric conditions in Switzerland and its surroundings. ICON-CH1-EPS provides the weather
 forecast for the next day, while ICON-CH2-EPS calculates the prognosis for the following 8 days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
-The list in section [2.1](###2.2.-Parameter-metadata) shows an overview of the two models.
+The list in section [2.1](###2.2.-Parameter-metadata) shows an overview of the two different models.
+The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-PS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-PS.
 
-
-### 2.1. Data granularity, update frequency, format, volume and more
-Data granularity is every hour, the update frequency every 3 or 6 (CH1 and 2 different?) hours and the data is a collection of GRIB files. The volume for each file is defined below.
-
-|           | **ICON-CH1-EPS** | **ICON-CH2-EPS**|
-|-----------|------------------|-----------------|
-| collection name | ogd-forecasting-icon-ch1 | ogd-forecasting-icon-ch2 |
-| forecast period | 33 hours | 120 hours (5 days)|
-| ensemble runs | 8 per day | 4 per day|
-| horizontal grid size | 1 km | 2.1 km |
-| ensemble members | 11 | 21 |
-
-
-### 2.2. Parameter metadata
-The parameter metadata is stated in the list of [variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX).
-
-Here are some examples:
+The structure of the data is as follows: Each file contains several parameters. What kind of parameters are accesible is stated in the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX). Here are some examples:
 
 | **Parameter**     | **Standart Unit**    |**Longname**     | **SingleLevel/MultiLevel**       | **Vertical Coordinate**     | **Horizon (Lead Time)**      | **Temporral aggregation**  | **Domain**      |
 |------------------|-----------------------------|------------------|-----------------------------|------------------|-----------------------------|------------------|-----------------------------|
@@ -88,13 +73,35 @@ Here are some examples:
 |TOT_PREC | kg $m^{-2}$| Total precipitation| Single Level| | | | |
 
 
+### 2.1. Data granularity, update frequency, format, volume and more
+
+Both models have different benchmarks.
+
+|           | **ICON-CH1-EPS** | **ICON-CH2-EPS**| **Description**|
+|-----------|------------------|-----------------|-----------------|
+| collection name | ogd-forecasting-icon-ch1 | ogd-forecasting-icon-ch2 |
+| file name | TBA | TBA |
+| format | GRIB edition 2| GRIB edition 2|
+|data granularity | every hour | every hour |
+| update frequency | every 3 hours | every 6 hours|
+| forecast period | 33 hours | 120 hours (5 days)|
+| grid type | native icosahedral | native icosahedral |
+| horizontal grid size | 1 km | 2.1 km |
+| ensemble members | 11 | 21 |
+|volume | TBA | TBA |
+
+
+### 2.2. Parameter metadata
+
+The parameter metadata is part of each GRIB file.
+
 ### 2.3. Coordinate system
 
-The coordinate system is the native icosahedral mesh.
+
 
 ### 2.4. Data visualisation
 
-See [jupyter-notebook examples] ().
+See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
 <br>
 
