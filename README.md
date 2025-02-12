@@ -59,10 +59,10 @@ See e.g. MeteoSwiss' [...](...).
 
 There are two different numerical weather forecasting models, ICON-CH1-EPS and ICON-CH2-EPS, used at MeteoSwiss for the
 future evolution of the athmospheric conditions in Switzerland and its surroundings. ICON-CH1-EPS provides the weather
-forecast for the next day, while ICON-CH2-EPS calculates the prognosis for the following 8 days. Both models include
+forecast for the next day, while ICON-CH2-EPS calculates the prognosis for the following 8 days maximum. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 The list in section [2.1](###2.2.-Parameter-metadata) shows an overview of the two different models.
-The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-PS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-PS.
+The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-EPS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-EPS.
 
 The structure of the data is as follows: Each file contains several parameters. What kind of parameters are accesible is stated in the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX). Here are some examples:
 
@@ -97,7 +97,7 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3. Coordinate system
 
-
+The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited by the original ICON model grid. In order to regrid to another grid we provide regridding operators.
 
 ### 2.4. Data visualisation
 
