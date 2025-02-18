@@ -1,7 +1,7 @@
 [MeteoSwiss - Open Data](https://github.com/MeteoSwiss/opendata/blob/main/README.md) > [Understanding MeteoSwiss' Open Data products](https://github.com/MeteoSwiss/opendata/blob/main/README.md#understanding-meteoswiss-open-data-products) > E. Forecast Data
 
 # E. Forecast Data
-[Forecasting systems](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems.html) calculate future atmospheric conditions on the basis of measurement data and observations. MeteoSwiss uses these weather models to create weather forecasts and to enable it to issue weather warnings in the event of imminent hazards. 
+[Forecasting systems](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems.html) calculate future atmospheric conditions on the basis of measurement data and observations. MeteoSwiss uses these weather models to create weather forecasts and to enable it to issue weather warnings in the event of imminent hazards.
 
 The following forecast data are available:
 
@@ -32,14 +32,14 @@ Data granularity is every 10min. Update frequency for the period 0h- +6h is spec
 
 Data format is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
 
-| Dataset | Update frequency | Example data file | Productive version file name | Estimated volume per file (MB) | 
+| Dataset | Update frequency | Example data file | Productive version file name | Estimated volume per file (MB) |
 |:----- | ----- |:----- |:----- | ----- |
 | **Precipitation (10min values): quantitative chain (based on CombiPrecip, RR)** | every 10min | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` | 1.7 |
 | **Wind, wind gust and wind direction (10min values)** | every 10min | [...](...) | `ogd-nowcasting_(product name)_(date and time code).nc` | ... |
 | *Relative sunshine duration* (10min values) | 10min | [SU_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/SU_INCA_202106280700.nc) | `ogd-nowcasting_SU-INCA_(date and time code).nc` | 6.4 |
 | *Total cloudiness* (10min values) | 10min | [SU_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/SU_INCA_202106280700.nc) | `ogd-nowcasting_SU-INCA_(date and time code).nc` | 6.4 |
 |       |       |       |       |       |
-| **Snowfall (10min values): quantitative chain (based on CombiPrecip, RS)** | every 10min | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_RS-INCA_(date and time code).nc` | 0.4 | 
+| **Snowfall (10min values): quantitative chain (based on CombiPrecip, RS)** | every 10min | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_RS-INCA_(date and time code).nc` | 0.4 |
 
 ### 1.2. Parameter metadata
 Parameter metadata is part of each NetCDF-File. See example data files in the table above.
@@ -56,12 +56,52 @@ See e.g. MeteoSwiss' [...](...).
 <br>
 
 ## 2. Numerical weather forecasting model
-...
+
+MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
+[ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
+
+### 2.1 Model Specification
+
+| **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
+|-----------|------------------|-----------------|
+| Collection Name | `ogd-forecasting-icon-ch1` | `ogd-forecasting-icon-ch2` |
+| Horizontal Grid Size | 1 km | 2.1 km |
+| Ensemble Members | 11 | 21 |
+| Forecast Period | 33 h | 120 h |
+| Grid | Native icosahedral | Native icosahedral |
+| Temporal Resolution |  1 h | 1 h |
+| Model Run Interval | every 3 h | every 6 h |
+| Format | GRIB edition 2 | GRIB edition 2 |
+
+
+### 2.2 Available Parameters
+
+Users can find information about available parameters, including metadata, by referring to the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX).
+
+
+### 2.3 Accessing Forecast Data
+
+The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-EPS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-EPS.
+
+
+### 2.4 Additional Data Information
+
+#### 2.4.1 Parameter metadata
+
+The parameter metadata is part of each GRIB file.
+
+#### 2.4.2 Coordinate system
+
+The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited by the original ICON model grid. In order to regrid to another grid we provide regridding operators.
+
+#### 2.4.3 Data visualisation
+
+See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
 <br>
 
 ## 3. Local forecast data
-... 
+...
 
 ...
 
