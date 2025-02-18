@@ -63,12 +63,6 @@ The user can access the forecast model output data of the last 24 hours. Data th
 
 The structure of the data is as follows: Each file contains several parameters. What kind of parameters are accesible is stated in the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX). Here are some examples:
 
-| **Parameter**     | **Standart Unit**    |**Longname**     | **SingleLevel/MultiLevel**       | **Vertical Coordinate**     | **Horizon (Lead Time)**      | **Temporral aggregation**  | **Domain**      |
-|------------------|-----------------------------|------------------|-----------------------------|------------------|-----------------------------|------------------|-----------------------------|
-| CLCH| %|Cloud area fraction in high troposphere (above ca 400hPa)| Single Level| | | | |
-|DURSUN | s | Duration of sunshine| Single Level| | | | |
-|TOT_PREC | kg $m^{-2}$| Total precipitation| Single Level| | | | |
-
 
 ### 2.1. Data granularity, update frequency, format, volume and more
 
