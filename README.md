@@ -59,7 +59,6 @@ See e.g. MeteoSwiss' [...](...).
 
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days.
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
-The list in section [2.1](###2.2.-Parameter-metadata) shows an overview of the two different models.
 The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-EPS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-EPS.
 
 The structure of the data is as follows: Each file contains several parameters. What kind of parameters are accesible is stated in the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX). Here are some examples:
