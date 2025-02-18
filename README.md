@@ -74,18 +74,16 @@ The structure of the data is as follows: Each file contains several parameters. 
 
 Both models have different benchmarks.
 
-|           | **ICON-CH1-EPS** | **ICON-CH2-EPS**| **Description**|
-|-----------|------------------|-----------------|-----------------|
-| collection name | ogd-forecasting-icon-ch1 | ogd-forecasting-icon-ch2 |
-| file name | TBA | TBA |
-| format | GRIB edition 2| GRIB edition 2|
-|data granularity | every hour | every hour |
-| update frequency | every 3 hours | every 6 hours|
-| forecast period | 33 hours | 120 hours (5 days)|
-| grid type | native icosahedral | native icosahedral |
-| horizontal grid size | 1 km | 2.1 km |
-| ensemble members | 11 | 21 |
-|volume | TBA | TBA |
+| **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**| 
+|-----------|------------------|-----------------|
+| Collection Name | `ogd-forecasting-icon-ch1` | `ogd-forecasting-icon-ch2` |
+| Horizontal Grid Size | 1 km | 2.1 km |
+| Ensemble Members | 11 | 21 |
+| Forecast Period | 33 h | 120 h |
+| Grid | Native icosahedral | Native icosahedral |
+| Temporal Resolution |  1 h | 1 h |
+| Model Run Interval | every 3 h | every 6 h |
+| Format | GRIB edition 2 | GRIB edition 2 |
 
 
 ### 2.2. Parameter metadata
