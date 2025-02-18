@@ -57,18 +57,12 @@ See e.g. MeteoSwiss' [...](...).
 
 ## 2. Numerical weather forecasting model
 
-MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days.
+MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
-The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-EPS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-EPS.
 
-Users can find information about available parameters, including metadata, by referring to the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX). 
+### 2.1 Model Specification
 
-
-### 2.1. Data granularity, update frequency, format, volume and more
-
-Both models have different benchmarks.
-
-| **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**| 
+| **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
 | Collection Name | `ogd-forecasting-icon-ch1` | `ogd-forecasting-icon-ch2` |
 | Horizontal Grid Size | 1 km | 2.1 km |
@@ -80,15 +74,27 @@ Both models have different benchmarks.
 | Format | GRIB edition 2 | GRIB edition 2 |
 
 
-### 2.2. Parameter metadata
+### 2.2 Available Parameters
+
+Users can find information about available parameters, including metadata, by referring to the [list of variables](https://meteoswiss.sharepoint.com/:x:/s/tmsAPAPN/Ee1fZIGn92NAtiaAZ3fvhvkBa0G7yuybES5VNaEm7pGqFw?e=Ffm2qX).
+
+
+### 2.3 Accessing Forecast Data
+
+The user can access the forecast model output data of the last 24 hours. Data that is older than 24 hours is no longer available. To see what data is accessible, the user can search in [Catalog 1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) for data on ICON-CH1-EPS and in [Catalog 2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) for ICON-CH2-EPS.
+
+
+### 2.4 Additional Data Information
+
+#### 2.4.1 Parameter metadata
 
 The parameter metadata is part of each GRIB file.
 
-### 2.3. Coordinate system
+#### 2.4.2 Coordinate system
 
 The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited by the original ICON model grid. In order to regrid to another grid we provide regridding operators.
 
-### 2.4. Data visualisation
+#### 2.4.3 Data visualisation
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
