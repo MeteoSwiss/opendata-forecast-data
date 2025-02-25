@@ -98,6 +98,28 @@ The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
+### 2.5 Grid description
+
+The ICON model distingiushes between a horizontal and vertical grid structure.
+Combining the two structures results in a 3 dimensional grid over Switzerland and
+its surroundings. We differentiate between sinlge and multi level parameters where the former discribes a parameter on **one** horizontal grid and the latter a parameter on the vertical grid and therefore as well on multiple horizontal grids. For example the vertical velocity is stored in vertical layers whereas the two-meter-temperature has only information on one horizonal grid.
+
+#### 2.5.1 Vertical grid
+
+The vertical grid is a height based coordinate system that follows the terrain. It is devided into multiple layers. The closer the layer is to
+the surface, the narrower the layers are. Every layer is defined by the triangular horizontal grid above and below.
+The height of the top and the bottom triangle it at a so-called halve level, and a full level is in the middle of two halve levels. In total there exists 80 full levels. Be aware that some data is stored on halve and some on full levels.
+For example the vertical velocity W has its information on halve levels, which we called staggered. To check wheather a parameter is staggered, one needs to access the parameter metadata. For more information on the vertical grid read section 3.4 in [ICON Model Tutorial](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+#### 2.5.2 Horizontal grid
+
+The horizontal grid is based on a triangular icosahedral structure, meaning that the grid is split into pentagons containing each 5 triangles.
+Each edge of a triangle is then again divided into *k* subsquent bisections which split all existing triangles into $4^k$ triangles. By construction, each vertex of the global grid is adjacent to exactly 6 triangular cells,
+with the exception of the original vertices of the icosahedron, the pentagon points, which are adjacent to only 5 cells. Since the provided data is given
+in the native grid, it is important to note that the information on the grid is not stored on the vertices of the triangles. **When retrieving the
+longitude and latitude be aware that they are corresponding to the center of the circumcircle of each triangle.** For more information on the horizontal grid read section
+2.1 in [ICON Model Tutorial](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
 <br>
 
 ## 3. Local forecast data
