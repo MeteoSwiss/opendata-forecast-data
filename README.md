@@ -101,8 +101,8 @@ levels, whereas the two-meter-temperature has only information in one vertical l
 
 The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as one can see in the picture below.
-Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an avarges value
-over the whole vertical layer. In total there exists 80 discrete half levels.
+Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an avarages value
+over the whole vertical layer. In total there exists 81 discrete half levels.
 
 <div align=center>
 <img src="Images/VerticalLayers.png" width="550"/>
@@ -110,11 +110,9 @@ over the whole vertical layer. In total there exists 80 discrete half levels.
 Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
 </div>
 
-Be aware that some data is stored on half and some on full levels.
-For example the vertical velocity W has its information on half levels, meaning that the value is exact in this point
-and not an avarage value over an interval stored in one point. A parameter with this property is called staggered.
-To check wheather a parameter is staggered, one needs to access the parameter metadata. For more
-detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+All parameters have their information on full levels, except for the vertical velocity W. W is stored on half levels and therefore called staggered.
+This means that the value is exact in this point
+and not an avarage value over a layer stored in one point like the full levels. For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 #### 2.4.2 Horizontal grid
 
@@ -130,7 +128,7 @@ Since the provided data is given in the native grid, note that the grid points c
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 
-### 2.6 Data visualisation
+### 2.5 Data visualisation
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
