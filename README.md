@@ -64,7 +64,7 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
-| Collection |[ogd-forecasting-icon-ch1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) | [ogd-forecasting-icon-ch2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) |
+| Collection |[ch.meteoschweiz.ogd-forecasting-icon-ch1](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) | [ch.meteoschweiz.ogd-forecasting-icon-ch2](https://sys-data.int.bgdi.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) |
 | Horizontal Grid Size | 1 km | 2.1 km |
 | Ensemble Members | 11 | 21 |
 | Forecast Period | 33 h | 120 h |
@@ -76,12 +76,12 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 ### 2.2 Available Parameters
 
-Users can find information about available parameters, including metadata, in the collections listed above.
+Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
 
 
 ### 2.3 Accessing Forecast Data
 
-The user can access the forecast model output data from the last 24 hours. Data older than 24 hours is no longer available. To check available data, the user can refer to the relevant collections listed in the table above.
+The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
 
 
 ### 2.4 Additional Data Information
