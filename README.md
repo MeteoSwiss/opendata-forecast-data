@@ -123,7 +123,7 @@ detailed information on the vertical grid, read section 3.4 in [Working with the
 
 #### 2.5.2 Horizontal grid
 
-The horizontal grid is based on a triangular icosahedral structure, as one can see in the following representation.
+The horizontal grid is based on a triangular icosahedral structure, as illustrated below.
 
 ![image](Images/IcosahedralGrid.png)\
 *Illustration of the grid construction, Working with the ICON Model, Figure 2.1*
