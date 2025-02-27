@@ -130,7 +130,7 @@ The horizontal grid is based on a triangular icosahedral structure, as illustrat
 
 Since the provided data is given
 in the native grid, it is important to note that the information on the grid is **not** stored on the vertices of the triangles. When retrieving the
-longitude and latitude be aware that they are corresponding to the center of the circumcircle of each triangle.** For more detailed information on
+longitude and latitude, be aware that they correspond to the **center of the circumcircle of each triangle**. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 ### Static GRIB files
