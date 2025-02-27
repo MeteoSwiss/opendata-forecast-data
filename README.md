@@ -78,68 +78,62 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 Users can find information about available parameters, including metadata, in the collections listed above.
 
+#### 2.2.1 Parameter metadata
+
+The parameter metadata is part of each GRIB file.
+
 
 ### 2.3 Accessing Forecast Data
 
 The user can access the forecast model output data from the last 24 hours. Data older than 24 hours is no longer available. To check available data, the user can refer to the relevant collections listed in the table above.
 
 
-### 2.4 Additional Data Information
+### 2.4 3D grid structure and representation
 
-#### 2.4.1 Parameter metadata
-
-The parameter metadata is part of each GRIB file.
-
-#### 2.4.2 Coordinate system
-
-The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited by the original ICON model grid. In order to regrid to another grid we provide regridding operators.
-
-#### 2.4.3 Data visualisation
-
-See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
-
-### 2.5 Grid description
-
-The ICON model distingiushes between a horizontal and vertical grid structure.
+The ICON model is an unstructured native grid. It distingiushes between a horizontal and vertical grid structure.
 Combining the two structures results in a 3 dimensional grid over Switzerland and
 its surroundings. We differentiate between single and multi level parameters where the
 former describes a parameter on a single vertical level and the latter a parameter on
 the entire 3-dimensional grid. For example the vertical velocity is stored in multiple vertical
 levels, whereas the two-meter-temperature has only information in one vertical level.
 
-#### 2.5.1 Vertical grid
+#### 2.4.1 Vertical grid
 
 The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as one can see in the picture below.
 Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an avarges value
-over the whole vertical intervall. In total there exists 80 discrete halve levels.
-![image](Images/VerticalLayers.png)*Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2*
+over the whole vertical layer. In total there exists 80 discrete half levels.
 
-Be aware that some data is stored on halve and some on full levels.
-For example the vertical velocity W has its information on halve levels, meaning that the value is exact in this point
+<div align=center>
+<img src="Images/VerticalLayers.png" width="550"/>
+
+Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
+</div>
+
+Be aware that some data is stored on half and some on full levels.
+For example the vertical velocity W has its information on half levels, meaning that the value is exact in this point
 and not an avarage value over an interval stored in one point. A parameter with this property is called staggered.
 To check wheather a parameter is staggered, one needs to access the parameter metadata. For more
 detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-#### 2.5.2 Horizontal grid
+#### 2.4.2 Horizontal grid
 
-The horizontal grid is based on a triangular icosahedral structure, as illustrated below.
+The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
 
-![image](Images/IcosahedralGrid.png)\
-*Illustration of the grid construction, Working with the ICON Model, Figure 2.1*
+<div align=center>
+<img src="Images/IcosahedralGrid.png" width="300"/>
 
-Since the provided data is given
-in the native grid, it is important to note that the information on the grid is **not** stored on the vertices of the triangles. When retrieving the
-longitude and latitude, be aware that they correspond to the **center of the circumcircle of each triangle**. For more detailed information on
+Illustration of the grid construction, Working with the ICON Model, Figure 2.1
+</div>
+
+Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-### Static GRIB files
 
+### 2.6 Data visualisation
 
+See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
-#### CLON/CLAT
-
-#### HHL
 
 <br>
 
