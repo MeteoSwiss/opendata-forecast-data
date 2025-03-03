@@ -55,7 +55,7 @@ See e.g. MeteoSwiss' [...](...).
 
 <br>
 
-## 2. Numerical weather forecasting model data
+## 2. Numerical Weather Forecasting Model Data
 
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
@@ -78,7 +78,7 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
 
-#### 2.2.1 Parameter metadata
+#### 2.2.1 Parameter Metadata
 
 The parameter metadata is part of each GRIB file.
 
@@ -89,20 +89,19 @@ The user can access the forecast model data from the last 24 hours. Data older t
 
 
 ### 2.4 3D Grid Structure and Representation
+The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
+Parameters are classified as either **single-level** or **multi-level**:
+- **Single-level parameters** contain data at a specific vertical level.
+- **Multi-level parameters** extend across multiple vertical layers.
 
-The ICON model is an unstructured native grid. It distingiushes between a horizontal and vertical grid structure.
-Combining the two structures results in a 3 dimensional grid over Switzerland and
-its surroundings. We differentiate between single and multi level parameters where the
-former describes a parameter on a single vertical level and the latter a parameter on
-the entire 3-dimensional grid. For example the vertical velocity is stored in multiple vertical
-levels, whereas the two-meter-temperature has only information in one vertical level.
+For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
 
-#### 2.4.1 Vertical grid
+
+#### 2.4.1 Vertical Grid
 
 The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
-Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an averaged value
-over the whole vertical layer. In total there exists 81 discrete half levels.
+The so-called half levels align with horizontal grid points, while the full levels represent an averaged value over a vertical interval.
 
 <div align=center>
 <img src="Images/VerticalLayers.png" width="550"/>
@@ -114,7 +113,7 @@ All parameters have their information on full levels, except for the vertical ve
 This means that the value is exact in this point
 and not an avarage value over a layer stored in one point like the full levels. For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-#### 2.4.2 Horizontal grid
+#### 2.4.2 Horizontal Grid
 
 The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
 
@@ -128,7 +127,7 @@ Since the provided data is given in the native grid, note that the grid points c
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 
-### 2.5 Data visualisation
+### 2.5 Data Visualisation
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
