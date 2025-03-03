@@ -101,7 +101,7 @@ levels, whereas the two-meter-temperature has only information in one vertical l
 
 The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
-Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an avarages value
+Note that the so-called *half levels* correspond to the horizontal grid points, while the *full levels* describe an averaged value
 over the whole vertical layer. In total there exists 81 discrete half levels.
 
 <div align=center>
