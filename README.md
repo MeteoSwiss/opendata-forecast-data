@@ -102,7 +102,7 @@ For example, vertical velocity is stored at multiple vertical levels, while the 
 The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
 The so-called half levels align with horizontal grid points, while the full levels represent an averaged value over a vertical interval.
-In total there exists 81 discrete half levels.
+There are 81 discrete half levels and 80 full levels in our data.
 
 <div align=center>
 <img src="Images/VerticalLayers.png" width="550"/>
