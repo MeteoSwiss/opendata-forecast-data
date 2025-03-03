@@ -55,7 +55,7 @@ See e.g. MeteoSwiss' [...](...).
 
 <br>
 
-## 2. Numerical weather forecasting model data
+## 2. Numerical Weather Forecasting Model Data
 
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
@@ -78,25 +78,60 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
 
+#### 2.2.1 Parameter Metadata
+
+The parameter metadata is part of each GRIB file.
+
 
 ### 2.3 Accessing Forecast Data
 
 The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
 
 
-### 2.4 Additional Data Information
+### 2.4 3D Grid Structure and Representation
+The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
+Parameters are classified as either **single-level** or **multi-level**:
+- **Single-level parameters** contain data at a specific vertical level.
+- **Multi-level parameters** extend across multiple vertical layers.
 
-#### 2.4.1 Parameter metadata
+For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
 
-The parameter metadata is part of each GRIB file.
 
-#### 2.4.2 Coordinate system
+#### 2.4.1 Vertical Grid
 
-The ICON-CH1-EPS and ICON-CH2-EPS model uses a native icosahedral grid inherited by the original ICON model grid. In order to regrid to another grid we provide regridding operators.
+The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
+the surface, the narrower the layers are, as shown in the image below.
+The so-called half levels align with horizontal grid points, while the full levels represent an averaged value over a vertical interval.
+There are 81 discrete half levels and 80 full levels in our data.
 
-#### 2.4.3 Data visualisation
+<div align=center>
+<img src="Images/VerticalLayers.png" width="550"/>
+
+Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
+</div>
+
+All parameters have their information on full levels, except for the vertical velocity W. W is stored on half levels and therefore called staggered.
+This means that the value is exact in this point
+and not an avarage value over a layer stored in one point like the full levels. For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+#### 2.4.2 Horizontal Grid
+
+The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
+
+<div align=center>
+<img src="Images/IcosahedralGrid.png" width="300"/>
+
+Illustration of the grid construction, Working with the ICON Model, Figure 2.1
+</div>
+
+Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
+the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+
+### 2.5 Data Visualisation
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
+
 
 <br>
 
