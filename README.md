@@ -88,7 +88,7 @@ The parameter metadata is part of each GRIB file.
 The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
 
 
-### 2.4 3D grid structure and representation
+### 2.4 3D Grid Structure and Representation
 
 The ICON model is an unstructured native grid. It distingiushes between a horizontal and vertical grid structure.
 Combining the two structures results in a 3 dimensional grid over Switzerland and
