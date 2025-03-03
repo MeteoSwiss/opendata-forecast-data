@@ -147,6 +147,23 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
+### 2.7 Accesss REST API (without python)
+
+It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
+Start by runing the following command in a terminal.
+
+```
+GET {{baseUrl}}/v1/collections/{{collectionName}}/items/{{itemName}}
+```
+where:
+- `baseURL` is `https://sys-data.int.bgdi.ch/api/stac`.
+- `collectionName` is either `ch.meteoschweiz.ogd-forecasting-icon-ch1` or
+`ch.meteoschweiz.ogd-forecasting-icon-ch2` depending on the collection the user wants.
+- `itemName` is the name of the forecast the user wants to download.
+One can look up the name in one of the two collections (see [section 2.1](###2.1-Model-Specification))
+
+The output shows a dictonary containing multiple keys. Whithin the key
+`assets` locate `href`and copy the URL. Paste the URL to your browser and press enter to trigger the dowload.
 
 <br>
 
