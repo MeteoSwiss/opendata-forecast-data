@@ -157,10 +157,9 @@ GET {{baseUrl}}/v1/collections/{{collectionName}}/items/{{itemName}}
 ```
 where:
 - `baseURL` is `https://sys-data.int.bgdi.ch/api/stac`.
-- `collectionName` is either `ch.meteoschweiz.ogd-forecasting-icon-ch1` or
-`ch.meteoschweiz.ogd-forecasting-icon-ch2` depending on the collection the user wants.
-- `itemName` is the name of the forecast the user wants to download.
-One can look up the name in one of the two collections (see [section 2.1](###2.1-Model-Specification))
+- `collectionName` is defined in [section 2.1](###2.1-Model-Specification) in the row "Collection".
+- `itemName` is the name of the forecast the user wants to download. The name can be retrieved via
+the two collections in [section 2.1](###2.1-Model-Specification).
 
 The output shows a dictonary containing multiple keys. Whithin the key
 `assets` locate `href`and copy the URL. Paste the URL to your browser and press enter to trigger the dowload.
