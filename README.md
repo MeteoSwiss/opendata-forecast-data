@@ -60,7 +60,7 @@ See e.g. MeteoSwiss' [...](...).
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
-### 2.1 Model Specification
+### 2.1 Model specification
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
@@ -74,7 +74,7 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 | Format | GRIB edition 2 | GRIB edition 2 |
 
 
-### 2.2 Available Parameters
+### 2.2 Available parameters
 
 Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
 
@@ -83,7 +83,7 @@ Users can find information about available parameters, including metadata, in th
 The parameter metadata is part of each GRIB file.
 
 
-### 2.3 Accessing Forecast Data
+### 2.3 Accessing forecast data
 
 The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
 
@@ -147,7 +147,7 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
-### 2.7 Accesss REST API (without python)
+### 2.7 Access REST API (without python)
 
 It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
 Start by runing the following command in a terminal.
@@ -163,6 +163,24 @@ the two collections in [section 2.1](###2.1-Model-Specification).
 
 The output shows a dictonary containing multiple keys. Whithin the key
 `assets` locate `href`and copy the URL. Paste the URL to your browser and press enter to trigger the dowload.
+
+#### 2.7.1 Install COSMO definitions
+
+There are different abbriviations for the same parameter. By default the GRIB file shows the short names defined by ECMWF.
+In order to install the COSMO definition, execute the steps below.
+
+- Clone the github repositroy [eccodes-cosmo-resources](github.com:COSMO-ORG/eccodes-cosmo-resources.git) into folder *nameOfFolder*.
+- Use: `cd eccodes-cosmo-resources` and `git checkout *version*`.
+- Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfFolder*.
+- Use: `cd eccodes` and `git checkout *sameVersion*`.
+
+Finally run the following command every time before working with GRIB files:
+
+```
+export GRIB_DEFINITION_PATH=pathToFolder/eccodes-cosmo-recources/definitions:pathToFolder/eccodes/definitions
+```
+
+
 
 <br>
 
