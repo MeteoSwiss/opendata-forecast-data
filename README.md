@@ -169,7 +169,7 @@ The output shows a dictonary containing multiple keys. Whithin the key
 There are different abbriviations for the same parameter. By default the GRIB file shows the short names defined by ECMWF.
 In order to install the COSMO definition, execute the steps below.
 
-- Clone the github repositroy [eccodes-cosmo-resources](github.com:COSMO-ORG/eccodes-cosmo-resources.git) into folder *nameOfFolder*.
+- Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfFolder*.
 - Use: `cd eccodes-cosmo-resources` and `git checkout *version*`.
 - Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfFolder*.
 - Use: `cd eccodes` and `git checkout *sameVersion*`.
