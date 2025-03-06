@@ -129,7 +129,7 @@ the horizontal grid, read section 2.1 in [Working with the ICON Model](https://w
 
 ### 2.5 Static Files
 
-Besides the current forecasting files, each catalog contains two static files. They store permanent information about the halve levels (HHL) of the vertical grid and
+Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center points of each triangle (CLON/CLAT) on the horizontal grid. Note that the forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the statc files HHL and CLON/CLAT.
 
 #### 2.5.1 How to access the height of a grid point
