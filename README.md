@@ -140,7 +140,9 @@ In the static HHL file one can obtain the height of the half levels of the verti
 
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. When opening a data set in a jupyter nootbook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
+### 🚧  **Temporary Notice Work in Progress **  
+When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
 ### 2.6 Data Visualisation
