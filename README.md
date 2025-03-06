@@ -135,7 +135,7 @@ the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid
 #### 2.5.1 How to access the height of a grid point
 
 In the static HHL file one can obtain the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a wanted parameter to a specific height, follow the steps below.
-- Check if the `UUID` of the data file and the HHL file match.
+- Check if the `UUID` (Universally Unique Identifier) of the data file and the HHL file match.
 - Then, use the `scaledValueOfFirstFixedSurface` value to retrieve the height in meter above see level of the HHL file.
 
 #### 2.5.2 How to access the longitude and latitude of a grid point
