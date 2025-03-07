@@ -92,7 +92,24 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3 Accessing Forecast Data
 
-The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
+The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the [table](###2.1-model-specification) above.
+
+#### 2.3.1 Volume of the Forecast Data
+
+The following tables summarize the volumes of the differnt forecast files.
+
+**ICON-CH1:**
+| | Single Level| Multi Level|
+|-----------|------------------|-----------------|
+| Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
+| Preturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
+
+
+**ICON-CH2:**
+| | Single Level| Multi Level|
+|-----------|------------------|-----------------|
+| Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
+| Preturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
 
 
 ### 2.4 3D Grid Structure and Representation
