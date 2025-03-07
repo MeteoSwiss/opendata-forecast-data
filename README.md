@@ -147,7 +147,7 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
-### 2.7 Access REST API (without python)
+### 2.7 Accessing REST API
 
 It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
 Start by runing the following command in a terminal.
@@ -164,10 +164,11 @@ the two collections in [section 2.1](###2.1-Model-Specification).
 The output shows a dictonary containing multiple keys. Whithin the key
 `assets` locate `href`and copy the URL. Paste the URL to your browser and press enter to trigger the dowload.
 
-#### 2.7.1 Install COSMO definitions
+#### 2.7.1 Install eccdoes and COSMO definitions
 
-There are different abbriviations for the same parameter. By default the GRIB file shows the short names defined by ECMWF.
-In order to install the COSMO definitions, apply the steps below.
+Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
+By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
+In order to install them, apply the steps below.
 
 - Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfFolder*.
 - Use: `cd eccodes-cosmo-resources` and `git checkout *version*`.
@@ -181,6 +182,8 @@ export GRIB_DEFINITION_PATH=pathToFolder/eccodes-cosmo-recources/definitions:pat
 ```
 
 ❗**NOTE**: Every time you start your terminal, you have to execute the command above.
+
+⚠️ **WARNING**:
 
 <br>
 
