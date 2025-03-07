@@ -181,9 +181,11 @@ Finally run the following command:
 export GRIB_DEFINITION_PATH=pathToFolder/eccodes-cosmo-recources/definitions:pathToFolder/eccodes/definitions
 ```
 
-❗**NOTE**: Every time you start your terminal, you have to execute the command above.
+❗ **NOTE**: Every time you start your terminal, you have to execute the command above.
 
-⚠️ **WARNING**:
+⚠️ **WARNING**: Some of the parameters of the ICON Model are not defined in the ECMWF standard. Users who have not installed the COSMO
+ definitions may need to look for a parameter in the
+ [eccodes-cosmo-resources file](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
 
 <br>
 
