@@ -170,15 +170,15 @@ Once you have a GRIB file, you need a tool to read it. We recommend installing e
 By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
 In order to install them, apply the steps below.
 
-- Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfFolder*.
-- Use: `cd eccodes-cosmo-resources` and `git checkout *version*`.
-- Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfFolder*.
-- Use: `cd eccodes` and `git checkout *sameVersion*`.
+- Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
+- Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfYourFolder*.
+
+⚠️ **WARNING**: Make sure both repositories are in the same folder and run on the same version.
 
 Finally run the following command:
 
 ```
-export GRIB_DEFINITION_PATH=pathToFolder/eccodes-cosmo-recources/definitions:pathToFolder/eccodes/definitions
+export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
 ```
 
 ❗ **NOTE**: Every time you start your terminal, you have to execute the command above.
