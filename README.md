@@ -92,7 +92,7 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3 Accessing Forecast Data
 
-The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the [table](###2.1-model-specification) above.
+Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](###2.1-model-specification).
 
 #### 2.3.1 Volume of the Forecast Data
 
