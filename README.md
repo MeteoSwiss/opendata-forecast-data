@@ -109,7 +109,7 @@ The following tables summarize the volume of the different forecast files for **
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
-| Preturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
+| Perturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
 
 
 ### 2.4 3D Grid Structure and Representation
