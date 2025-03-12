@@ -102,7 +102,7 @@ The following tables summarize the volume of the different forecast files for **
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
-| Preturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
+| Perturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
 
 
 **ICON-CH2 Data Volume**
