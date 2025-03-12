@@ -99,7 +99,7 @@ Users can access forecast model data from the last **24 hours**. Data older than
 The following tables summarize the volume of the different forecast files for **ICON-CH1** and **ICON-CH2**.
 
 **ICON-CH1 Data Volume**
-| | Single Level| Multi Level|
+| | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
 | Preturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
