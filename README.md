@@ -60,7 +60,7 @@ See e.g. MeteoSwiss' [...](...).
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
-We will cover:
+The documentation covers the following topics:
 - [2.1 Model Specification](###2.1-model-specification)
 - [2.2 Available Parameters](###2.2-available-parameters)
 - [2.3 Accessing Forecast Data](###2.3-Accessing-Forecast-Data)
