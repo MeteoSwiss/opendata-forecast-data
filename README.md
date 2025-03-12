@@ -96,7 +96,7 @@ Users can access forecast model data from the last **24 hours**. Data older than
 
 #### 2.3.1 Forecast Data Volume
 
-The following tables summarize the volumes of the differnt forecast files.
+The following tables summarize the volume of the different forecast files for **ICON-CH1** and **ICON-CH2**.
 
 **ICON-CH1:**
 | | Single Level| Multi Level|
