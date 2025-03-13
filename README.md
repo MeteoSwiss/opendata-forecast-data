@@ -169,7 +169,7 @@ Start by writing a JSON file with the following settings.
 }
 ```
 
-Now install the Visual Studio Code extention "REST Client" and switch to the `devt` environment. Open a .http file, copy the code below and send the request.
+Now install the Visual Studio Code extention "REST Client" and switch to the `devt` environment. Open a .http file, copy the code below and send the HTTP request.
 
 ```
 POST {{baseUrl}}/v1/search
@@ -189,7 +189,7 @@ Content-Type: application/json
 Where
 - `collections` distinguishes between the two models ICON-CH1-EPS and ICON-CH2-EPS,
 - `reference_datetime` defines the date and time of interest (here 2025-03-12 at 12:00:00),
-- `variable` describes the meteorological variable (here TOT_PREC - total precipitation,
+- `variable` describes the meteorological variable (here TOT_PREC - total precipitation),
 - `perturbed` decides wheather the data is deterministic (set to `False`) or contains multiple ensemble members and
 - `horizon` defines the forecast lead time (P0DT00H00M00S means instant data).
 
