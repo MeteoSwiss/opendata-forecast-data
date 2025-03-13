@@ -150,19 +150,57 @@ See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos
 ### 2.7 Accessing REST API
 
 It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
-Start by runing the following command in a terminal.
+Start by writing a JSON file with the following settings.
 
 ```
-GET {{baseUrl}}/v1/collections/{{collectionName}}/items/{{itemName}}
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "collectionCH2": "ch.meteoschweiz.ogd-forecasting-icon-ch2",
+            "collectionCH1": "ch.meteoschweiz.ogd-forecasting-icon-ch1"
+        },
+        "devt":{
+            "baseUrl": "https://sys-data.int.bgdi.ch/api/stac",
+            "password": "",
+            "username": "",
+            "clientId": ""
+        }
+    }
+}
 ```
-where:
-- `baseURL` is `https://sys-data.int.bgdi.ch/api/stac`.
-- `collectionName` is defined in [section 2.1](###2.1-Model-Specification) in the row "Collection".
-- `itemName` is the name of the forecast the user wants to download. The name can be retrieved via
-the two collections in [section 2.1](###2.1-Model-Specification).
 
-The output shows a dictonary containing multiple keys. Whithin the key
-`assets` locate `href`and copy the URL. Paste the URL to your browser and press enter to trigger the dowload.
+Now install the Visual Studio Code extention "REST Client" and switch to the `devt` environment. Open a .http file, copy the code below and send the request.
+
+```
+POST {{baseUrl}}/v1/search
+Content-Type: application/json
+
+{
+    "collections": [
+        "{{collectionCH2}}"
+    ],
+    "forecast:reference_datetime": "2025-03-12T12:00:00Z",
+    "forecast:variable": "TOT_PREC",
+    "forecast:perturbed": false,
+    "forecast:horizon": "P0DT00H00M00S"
+}
+```
+
+Where
+- `collections` distinguishes between the two models ICON-CH1-EPS and ICON-CH2-EPS,
+- `reference_datetime` defines the date and time of interest (here 2025-03-12 at 12:00:00),
+- `variable` describes the meteorological variable (here TOT_PREC - total precipitation,
+- `perturbed` decides wheather the data is deterministic (set to `False`) or contains multiple ensemble members and
+- `horizon` defines the forecast lead time (P0DT00H00M00S means instant data).
+
+The response shows a dictonary containing multiple keys. Whithin the key
+`assets` under `<name_of_the_forecast>` locate the URL in `href`. Then open your terminal and run the next command line.
+
+```
+wget -O <name_of_the_forecast> “<presigned URL>”
+```
+
+The forecast is downloaded into your current directory.
 
 #### 2.7.1 Install eccdoes and COSMO definitions
 
