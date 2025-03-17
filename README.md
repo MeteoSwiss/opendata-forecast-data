@@ -230,7 +230,7 @@ wget -O <name_of_the_forecast> “<presigned URL>”
 
 The forecast is downloaded into your current directory.
 
-#### 2.7.1 Install eccdoes and COSMO definitions
+#### 2.7.1 Install eccodes and COSMO definitions
 
 Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
 By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
@@ -248,6 +248,30 @@ export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/defin
 ```
 
 ❗ **NOTE**: Every time you start your terminal, you have to execute the command above.
+
+#### 2.7.2 Decoding GRIB Files with eccodes
+
+In this section we provide a short introduction to decoding GRIB files with the library eccodes. For more information on using eccodes, read the [documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf) of ECMWF.
+
+Use the following commands to
+- list all the GRIB messages:
+```
+grib_ls filename.grib
+```
+
+- list the GRIB messages, where:
+```
+grib_ls -w key1=value1,key2=value2 filename.grib
+```
+
+- get a detailed view of the content of all GRIB messages:
+```
+grib_dump filename.grib
+```
+- get a detailed view of the content of GRIB messages, where:
+```
+grib_dump -w key1=value1,key2=value2 filename.grib
+```
 
 ⚠️ **WARNING**: Some of the parameters of the ICON Model are not defined in the ECMWF standard. Users who have not installed the COSMO
  definitions may need to look for a parameter in the
