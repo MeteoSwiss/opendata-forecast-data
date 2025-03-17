@@ -60,24 +60,16 @@ See e.g. MeteoSwiss' [...](...).
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-### 2.1 Model specification
-=======
-=======
->>>>>>> 150970153213b5bb37e2ce7100f027bf82774e62
 The documentation covers the following topics:
-- [2.1 Model Specification](###2.1-model-specification)
-- [2.2 Available Parameters](###2.2-available-parameters)
-- [2.3 Accessing Forecast Data](###2.3-Accessing-Forecast-Data)
-- [2.4 3D Grid Structure and Representation](###2.4-3D-Grid-Structure-and-Representation)
-- [2.5 Data Visualisation](###2.5-Data-Visualisation)
+- [2.1 Model Specification](#21-model-specification)
+- [2.2 Available Parameters](#22-available-parameters)
+- [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
+- [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
+- [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
+- [2.6 Data Visualisation](#26-data-visualisation)
+- [2.7 Accessing REST API](#27-accessing-rest-api)
 
 ### 2.1 Model Specification
-<<<<<<< HEAD
->>>>>>> 49f884d81a15dd44b778fb188157be243de9028e
-=======
->>>>>>> 150970153213b5bb37e2ce7100f027bf82774e62
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
@@ -91,7 +83,7 @@ The documentation covers the following topics:
 | Format | GRIB edition 2 | GRIB edition 2 |
 
 
-### 2.2 Available parameters
+### 2.2 Available Parameters
 
 Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
 
@@ -100,7 +92,7 @@ Users can find information about available parameters, including metadata, in th
 The parameter metadata is part of each GRIB file.
 
 
-### 2.3 Accessing forecast data
+### 2.3 Accessing Forecast Data
 
 Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](###2.1-model-specification).
 
@@ -175,7 +167,7 @@ In the static HHL file one can obtain the height of the half levels of the verti
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
 The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
-### 🚧  **Temporary Notice Work in Progress **  
+### 🚧  **Temporary Notice Work in Progress **
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
