@@ -160,14 +160,18 @@ the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid
 
 #### 2.5.1 How to access the height of a grid point
 
-In the static HHL file one can obtain the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a wanted parameter to a specific height, follow the steps below.
-- Check if the `UUID` (Universally Unique Identifier) of the data file and the HHL file match.
-- Then, use the `scaledValueOfFirstFixedSurface` value to retrieve the height in meter above see level of the HHL file.
+In the static HHL file one can obtain the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a given parameter to a height in meters above sea level, follow the steps below.
+
+- Verify that the key `uuidOfHGrid` (Universally Unique Identifier) of the data file and the HHL file match.
+- Obtain the value for the key `level` and check the key `typeOfLevel` by listing the GRIB messages. If `typeOfLevel` is
+    - **generalVertical**, the level number of the key `level` matches the half level in the HHL file and returns the height in meters above sea level.
+    - **generalVerticalLayer**, the level number of the key `level` corresponds to the full level. To retrieve the height in meters above sea level, the user has to take the average height of the two half levels above and below the full level.
+    - any other type of level, it is specified in meters and is self-explanatory.
 
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
 The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
-### 🚧  **Temporary Notice Work in Progress **
+### 🚧  Temporary Notice Work in Progress
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
