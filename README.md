@@ -60,7 +60,18 @@ See e.g. MeteoSwiss' [...](...).
 MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
+<<<<<<< HEAD
 ### 2.1 Model specification
+=======
+The documentation covers the following topics:
+- [2.1 Model Specification](###2.1-model-specification)
+- [2.2 Available Parameters](###2.2-available-parameters)
+- [2.3 Accessing Forecast Data](###2.3-Accessing-Forecast-Data)
+- [2.4 3D Grid Structure and Representation](###2.4-3D-Grid-Structure-and-Representation)
+- [2.5 Data Visualisation](###2.5-Data-Visualisation)
+
+### 2.1 Model Specification
+>>>>>>> 49f884d81a15dd44b778fb188157be243de9028e
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
@@ -85,7 +96,24 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3 Accessing forecast data
 
-The user can access the forecast model data from the last 24 hours. Data older than 24 hours is no longer available. The data in each collection is described in the table above.
+Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](###2.1-model-specification).
+
+#### 2.3.1 Forecast Data Volume
+
+The following tables summarize the volume of the different forecast files for **ICON-CH1** and **ICON-CH2**.
+
+**ICON-CH1 Data Volume**
+| | Single-Level Files| Multi-Level Files|
+|-----------|------------------|-----------------|
+| Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
+| Perturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
+
+
+**ICON-CH2 Data Volume**
+| | Single-Level Files| Multi-Level Files|
+|-----------|------------------|-----------------|
+| Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
+| Perturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
 
 
 ### 2.4 3D Grid Structure and Representation
@@ -140,7 +168,9 @@ In the static HHL file one can obtain the height of the half levels of the verti
 
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. When opening a data set in a jupyter nootbook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
+### 🚧  **Temporary Notice Work in Progress **  
+When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
 ### 2.6 Data Visualisation
