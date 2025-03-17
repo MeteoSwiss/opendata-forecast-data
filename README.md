@@ -168,11 +168,16 @@ In the static HHL file one can obtain the height of the half levels of the verti
     - **generalVerticalLayer**, the level number of the key `level` corresponds to the full level. To retrieve the height in meters above sea level, the user has to take the average height of the two half levels above and below the full level.
     - any other type of level, it is specified in meters and is self-explanatory.
 
+❗ **NOTE**: Values at the same position refer to the same grid point.
+
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
 The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
 ### 🚧  Temporary Notice Work in Progress
-When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
+When retrieving a data file in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, follow the septs below.
+
+- Verify that the key `uuidOfHGrid` (Universally Unique Identifier) of the data file and the CLON/CLAT file match.
+- To each value of the data set attach the longitude from the GRIB message with the `shortName` tlon and the latitude from the GRIB message with the `shortName` tlat. Values at the same position corresond to each other.
 
 
 ### 2.6 Data Visualisation
