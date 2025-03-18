@@ -61,7 +61,7 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
 The documentation covers the following topics:
-- [2.1 Model Specification](#21-model-specification)
+- [2.1 Model Specifications](#21-model-specifications)
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
