@@ -243,7 +243,8 @@ In order to install them, apply the steps below.
 
 ⚠️ **WARNING**: Make sure both repositories are in the same folder and run on the same version.
 
-Finally run the following command:
+Finally, execute the following command to set the GRIB definition path:
+
 
 ```
 export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
