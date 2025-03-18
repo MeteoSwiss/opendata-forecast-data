@@ -278,7 +278,7 @@ grib_ls -w key1=value1,key2=value2 filename.grib
 grib_ls -p key1,key2 filename.grib
 ```
 
-- get a detailed view of the content of all GRIB messages:
+- Get a detailed view of the content of all GRIB messages:
 ```
 grib_dump filename.grib
 ```
