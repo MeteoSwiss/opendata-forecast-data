@@ -175,7 +175,7 @@ When opening a data set in a jupyter notebook the load function includes fetchin
 
 See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
-### 2.7 Accessing REST API
+### 2.7 Retrieving Forecasts via REST API
 
 It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
 Start by writing a JSON file with the following settings.
