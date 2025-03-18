@@ -273,7 +273,7 @@ grib_ls filename.grib
 grib_ls -w key1=value1,key2=value2 filename.grib
 ```
 
-- specify a list of keys to be printed:
+- Specify a list of keys to be printed:
 ```
 grib_ls -p key1,key2 filename.grib
 ```
