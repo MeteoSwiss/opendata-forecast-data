@@ -287,9 +287,7 @@ grib_dump filename.grib
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
 
-⚠️ **WARNING**: Some of the parameters of the ICON Model are not defined in the ECMWF standard. Users who have not installed the COSMO
- definitions may need to look for a parameter in the
- [eccodes-cosmo-resources file](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
+⚠️ **WARNING**: Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def)
 
 <br>
 
