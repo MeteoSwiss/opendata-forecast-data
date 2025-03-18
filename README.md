@@ -202,7 +202,6 @@ Each parameter serves the following purpose:
 - `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
 - `forecast:horizon`: Defines the lead time of the forecast (`P0DT00H00M00S` for instant data).
 
-#### 2.7.2 Sending the Request
 Using a tool like `curl`, send the request to the API endpoint:
 ```
 curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
@@ -225,24 +224,25 @@ Content-Type: application/json
     "forecast:horizon": "P0DT00H00M00S"
 }
 ```
-#### 2.7.3 Downloading the Forecast Data
+#### 2.7.2 Downloading the Forecast Data
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
-wget -O <name_of_the_forecast> “<presigned URL>”
+wget -O <desired_filename> “<presigned URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with ecCodes.
 
-#### 2.7.4 Installing ecCodes and COSMO definitions
+#### 2.7.3 Installing ecCodes and COSMO definitions
 
-Once you have a GRIB file, you need a tool to read it. We recommend installing ecCodes from ECMWF.
+Once you have a GRIB file, you need a tool to read it. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
 By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
 - Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
 - Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfYourFolder*.
 
-⚠️ **WARNING**: Make sure both repositories are in the same folder and run on the same version.
+> ⚠️ **WARNING**:
+> Make sure both repositories are in the same folder and run on the same version.
 
 Finally, execute the following command to set the GRIB definition path:
 
@@ -251,9 +251,10 @@ Finally, execute the following command to set the GRIB definition path:
 export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
 ```
 
-❗ **NOTE**: This command must be executed every time you start a new terminal session.
+>❗ **NOTE**:
+> This command must be executed every time you start a new terminal session.
 
-#### 2.7.5 Decoding GRIB Files with ecCodes
+#### 2.7.4 Decoding GRIB Files with ecCodes
 
 This section provides a brief introduction to decoding GRIB files using **ecCodes**.
 For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
@@ -288,7 +289,8 @@ grib_dump filename.grib
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
 
-⚠️ **WARNING**: Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
+> ⚠️ **WARNING**:
+> Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
 
 <br>
 
