@@ -282,7 +282,7 @@ grib_ls -p key1,key2 filename.grib
 ```
 grib_dump filename.grib
 ```
-- get a detailed view of the content of GRIB messages, where:
+- Get a detailed view of GRIB messages with filters:
 ```
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
