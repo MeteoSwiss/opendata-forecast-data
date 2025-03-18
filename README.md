@@ -258,7 +258,7 @@ This section provides a brief introduction to decoding GRIB files using **eccode
 For more details, refer to the [ECMWF eccodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf). 
 
 Use the following commands to
-- get information about the ecCodes installation:
+- Check ecCodes installation details:
 ```
 codes_info
 ```
