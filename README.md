@@ -29,7 +29,7 @@ The following datasets are available:
 
 Data format of the dataset is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
 
-| Dataset | Update frequency | Time granularity |Example data file | Productive version file name | Estimated volume per file (MB) |
+|Dataset |Update frequency |Time granularity |Example data file |Productive version file name |Estimated volume per file (MB) |
 |:----- | ----- |:----- |:----- | ----- |:----- |
 | **Total precipitation (RP)** | 5 min |  5 min |[RP_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RP_INCA_202106280700.nc) | `ogd-nowcasting_RP_(date and time code).nc` | 1-60 |
 | **Precipitation type (NT)** |  5 min |  5 min |[NT_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/NT_INCA_202106280700.nc) | `ogd-nowcasting_NT_(date and time code).nc` | 1.0 |
