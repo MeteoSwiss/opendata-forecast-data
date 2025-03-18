@@ -69,7 +69,7 @@ The documentation covers the following topics:
 - [2.6 Data Visualisation](#26-data-visualisation)
 - [2.7 Accessing REST API](#27-accessing-rest-api)
 
-### 2.1 Model Specification
+### 2.1 Model Specifications
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
