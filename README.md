@@ -177,7 +177,7 @@ See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos
 
 ### 2.7 Retrieving Forecasts via REST API
 
-It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
+If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters
 Start by writing a JSON file with the following settings.
 
 ```
