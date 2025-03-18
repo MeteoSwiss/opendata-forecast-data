@@ -268,7 +268,7 @@ codes_info
 grib_ls filename.grib
 ```
 
-- list the GRIB messages, where:
+- Filter GRIB messages based on key-value conditions:
 ```
 grib_ls -w key1=value1,key2=value2 filename.grib
 ```
