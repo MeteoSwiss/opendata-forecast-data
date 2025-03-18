@@ -254,7 +254,8 @@ export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/defin
 
 #### 2.7.5 Decoding GRIB Files with ecCodes
 
-In this section we provide a short introduction to decoding GRIB files with the library eccodes. For more information on using eccodes, read the [documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf) of ECMWF.
+This section provides a brief introduction to decoding GRIB files using **eccodes**.
+For more details, refer to the [ECMWF eccodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf). 
 
 Use the following commands to
 - get information about the ecCodes installation:
