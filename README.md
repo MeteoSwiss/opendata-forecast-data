@@ -61,15 +61,15 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
 The documentation covers the following topics:
-- [2.1 Model Specification](#21-model-specification)
+- [2.1 Model Specifications](#21-model-specifications)
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
 - [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
 - [2.6 Data Visualisation](#26-data-visualisation)
-- [2.7 Accessing REST API](#27-accessing-rest-api)
+- [2.7 Retrieving Forecasts via REST API](#27-retrieving-forecasts-via-rest-api)
 
-### 2.1 Model Specification
+### 2.1 Model Specifications
 
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
@@ -94,7 +94,7 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3 Accessing Forecast Data
 
-Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](###2.1-model-specification).
+Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
 #### 2.3.1 Forecast Data Volume
 
@@ -182,119 +182,103 @@ When retrieving a data file in a jupyter notebook the load function includes fet
 
 ### 2.6 Data Visualisation
 
-See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
+See [jupyter-notebook examples]().
 
-### 2.7 Accessing REST API
+### 2.7 Retrieving Forecasts via REST API
 
-It is possible to dowload a GRIB file using the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset).
-Start by writing a JSON file with the following settings.
+If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters.
 
+#### 2.7.1 Submitting a POST Request
+
+Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
-{
-    "rest-client.environmentVariables": {
-        "$shared": {
-            "collectionCH2": "ch.meteoschweiz.ogd-forecasting-icon-ch2",
-            "collectionCH1": "ch.meteoschweiz.ogd-forecasting-icon-ch1"
-        },
-        "devt":{
-            "baseUrl": "https://sys-data.int.bgdi.ch/api/stac",
-            "password": "",
-            "username": "",
-            "clientId": ""
-        }
-    }
-}
-```
-
-Now install the Visual Studio Code extention "REST Client" and switch to the `devt` environment. Open a .http file, copy the code below and send the HTTP request.
-
-```
-POST {{baseUrl}}/v1/search
-Content-Type: application/json
-
-{
-    "collections": [
-        "{{collectionCH2}}"
-    ],
-    "forecast:reference_datetime": "2025-03-12T12:00:00Z",
-    "forecast:variable": "TOT_PREC",
-    "forecast:perturbed": false,
-    "forecast:horizon": "P0DT00H00M00S"
-}
+curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
+     -H "Content-Type: application/json" \
+     -d '{
+            "collections": [
+                "ch.meteoschweiz.ogd-forecasting-icon-ch2"
+            ],
+            "forecast:reference_datetime": "2025-03-12T12:00:00Z",
+            "forecast:variable": "TOT_PREC",
+            "forecast:perturbed": false,
+            "forecast:horizon": "P0DT00H00M00S"
+        }'
 ```
 
-Where
-- `collections` distinguishes between the two models ICON-CH1-EPS and ICON-CH2-EPS,
-- `reference_datetime` defines the date and time of interest (here 2025-03-12 at 12:00:00),
-- `variable` describes the meteorological variable (here TOT_PREC - total precipitation),
-- `perturbed` decides wheather the data is deterministic (set to `False`) or contains multiple ensemble members and
-- `horizon` defines the forecast lead time (P0DT00H00M00S means instant data).
+Each parameter in the request body serves the following purpose:
+- `collections`: Defines the forecast model to use (`ICON-CH1-EPS` or `ICON-CH2-EPS`).
+- `forecast:reference_datetime`: Specifies the desired forecast initialization time (e.g., `2025-03-12T12:00:00Z`).
+- `forecast:variable`: Indicates the meteorological parameter of interest (`TOT_PREC` for total precipitation, for example).
+- `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
+- `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
-The response shows a dictonary containing multiple keys. Whithin the key
-`assets` under `<name_of_the_forecast>` locate the URL in `href`. Then open your terminal and run the next command line.
-
+#### 2.7.2 Downloading the Forecast Data
+Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
+Download the GRIB file using the following command:
 ```
-wget -O <name_of_the_forecast> “<presigned URL>”
+wget -O <desired_filename> “<presigned URL>”
 ```
+Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
-The forecast is downloaded into your current directory.
+#### 2.7.3 Installing ecCodes and COSMO definitions
 
-#### 2.7.1 Install eccodes and COSMO definitions
-
-Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
-By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
+Once you have a GRIB file, you need a tool to read it. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
+By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
-- Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
+- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
 - Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfYourFolder*.
 
-⚠️ **WARNING**: Make sure both repositories are in the same folder and run on the same version.
+> ⚠️ **WARNING**:
+> Make sure both repositories are in the same folder and run on the same version.
 
-Finally run the following command:
+Finally, execute the following command to set the GRIB definition path:
+
 
 ```
 export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
 ```
 
-❗ **NOTE**: Every time you start your terminal, you have to execute the command above.
+>❗ **NOTE**:
+> This command must be executed every time you start a new terminal session.
 
-#### 2.7.2 Decoding GRIB Files with eccodes
+#### 2.7.4 Decoding GRIB Files with ecCodes
 
-In this section we provide a short introduction to decoding GRIB files with the library eccodes. For more information on using eccodes, read the [documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf) of ECMWF.
+This section provides a brief introduction to decoding GRIB files using **ecCodes**.
+For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
 
 Use the following commands to
-- get information about the ecCodes installation:
+- Check ecCodes installation details:
 ```
 codes_info
 ```
 
-- list all the GRIB messages:
+- List all the GRIB messages in a file:
 ```
 grib_ls filename.grib
 ```
 
-- list the GRIB messages, where:
+- Filter GRIB messages based on key-value conditions:
 ```
 grib_ls -w key1=value1,key2=value2 filename.grib
 ```
 
-- specify a list of keys to be printed:
+- Specify a list of keys to be printed:
 ```
 grib_ls -p key1,key2 filename.grib
 ```
 
-- get a detailed view of the content of all GRIB messages:
+- Get a detailed view of the content of all GRIB messages:
 ```
 grib_dump filename.grib
 ```
-- get a detailed view of the content of GRIB messages, where:
+- Get a detailed view of GRIB messages with filters:
 ```
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
 
-⚠️ **WARNING**: Some of the parameters of the ICON Model are not defined in the ECMWF standard. Users who have not installed the COSMO
- definitions may need to look for a parameter in the
- [eccodes-cosmo-resources file](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
+> ⚠️ **WARNING**:
+> Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
 
 <br>
 
