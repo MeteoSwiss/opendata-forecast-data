@@ -67,7 +67,7 @@ The documentation covers the following topics:
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
 - [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
 - [2.6 Data Visualisation](#26-data-visualisation)
-- [2.7 Accessing REST API](#27-accessing-rest-api)
+- [2.7 Retrieving Forecasts via REST API](#27-retrieving-forecasts-via-rest-api)
 
 ### 2.1 Model Specifications
 
@@ -94,7 +94,7 @@ The parameter metadata is part of each GRIB file.
 
 ### 2.3 Accessing Forecast Data
 
-Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](###2.1-model-specification).
+Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
 #### 2.3.1 Forecast Data Volume
 
@@ -181,56 +181,35 @@ If users prefer not to use the provided library to load the data, they can retri
 
 #### 2.7.1 Submitting a POST Request
 
-Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, prepare a JSON request payload. Below is an example request body:
-
+Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
-{
-    "collections": [
-        "ch.meteoschweiz.ogd-forecasting-icon-ch2"
-    ],
-    "forecast:reference_datetime": "2025-03-12T12:00:00Z",
-    "forecast:variable": "TOT_PREC",
-    "forecast:perturbed": false,
-    "forecast:horizon": "P0DT00H00M00S"
-}
+curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
+     -H "Content-Type: application/json" \
+     -d '{
+            "collections": [
+                "ch.meteoschweiz.ogd-forecasting-icon-ch2"
+            ],
+            "forecast:reference_datetime": "2025-03-12T12:00:00Z",
+            "forecast:variable": "TOT_PREC",
+            "forecast:perturbed": false,
+            "forecast:horizon": "P0DT00H00M00S"
+        }'
 ```
 
-Each parameter serves the following purpose:
+Each parameter in the request body serves the following purpose:
 - `collections`: Defines the forecast model to use (`ICON-CH1-EPS` or `ICON-CH2-EPS`).
 - `forecast:reference_datetime`: Specifies the desired forecast initialization time (e.g., `2025-03-12T12:00:00Z`).
 - `forecast:variable`: Indicates the meteorological parameter of interest (`TOT_PREC` for total precipitation, for example).
 - `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
-- `forecast:horizon`: Defines the lead time of the forecast (`P0DT00H00M00S` for instant data).
+- `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
-Using a tool like `curl`, send the request to the API endpoint:
-```
-curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
-     -H "Content-Type: application/json" \
-     -d @request.json
-```
-
-Alternatively, in Visual Studio Code, install the `REST Client` extension and create an `.http` file with the following content:
-```
-POST https://sys-data.int.bgdi.ch/api/stac/v1/search
-Content-Type: application/json
-
-{
-    "collections": [
-        "ch.meteoschweiz.ogd-forecasting-icon-ch2"
-    ],
-    "forecast:reference_datetime": "2025-03-12T12:00:00Z",
-    "forecast:variable": "TOT_PREC",
-    "forecast:perturbed": false,
-    "forecast:horizon": "P0DT00H00M00S"
-}
-```
 #### 2.7.2 Downloading the Forecast Data
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<presigned URL>”
 ```
-Once downloaded, proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with ecCodes.
+Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
 #### 2.7.3 Installing ecCodes and COSMO definitions
 
