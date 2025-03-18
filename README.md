@@ -263,7 +263,7 @@ Use the following commands to
 codes_info
 ```
 
-- list all the GRIB messages:
+- List all the GRIB messages in a file:
 ```
 grib_ls filename.grib
 ```
