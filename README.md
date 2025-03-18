@@ -252,7 +252,7 @@ export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/defin
 
 ❗ **NOTE**: This command must be executed every time you start a new terminal session.
 
-#### 2.7.2 Decoding GRIB Files with eccodes
+#### 2.7.5 Decoding GRIB Files with ecCodes
 
 In this section we provide a short introduction to decoding GRIB files with the library eccodes. For more information on using eccodes, read the [documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf) of ECMWF.
 
