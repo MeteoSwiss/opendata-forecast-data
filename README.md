@@ -232,7 +232,7 @@ wget -O <name_of_the_forecast> “<presigned URL>”
 ```
 Once downloaded, you can proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with eccodes.
 
-#### 2.7.1 Install eccodes and COSMO definitions
+#### 2.7.4 Installing ecCodes and COSMO definitions
 
 Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
 By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
