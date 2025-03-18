@@ -250,7 +250,7 @@ Finally, execute the following command to set the GRIB definition path:
 export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
 ```
 
-❗ **NOTE**: Every time you start your terminal, you have to execute the command above.
+❗ **NOTE**: This command must be executed every time you start a new terminal session.
 
 #### 2.7.2 Decoding GRIB Files with eccodes
 
