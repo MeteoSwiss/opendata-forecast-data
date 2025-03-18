@@ -178,34 +178,14 @@ See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos
 ### 2.7 Retrieving Forecasts via REST API
 
 If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters
-Start by writing a JSON file with the following settings.
+#### 2.7.1 Submitting a POST Request
+
+Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, prepare a JSON request payload. Below is an example request body:
 
 ```
-{
-    "rest-client.environmentVariables": {
-        "$shared": {
-            "collectionCH2": "ch.meteoschweiz.ogd-forecasting-icon-ch2",
-            "collectionCH1": "ch.meteoschweiz.ogd-forecasting-icon-ch1"
-        },
-        "devt":{
-            "baseUrl": "https://sys-data.int.bgdi.ch/api/stac",
-            "password": "",
-            "username": "",
-            "clientId": ""
-        }
-    }
-}
-```
-
-Now install the Visual Studio Code extention "REST Client" and switch to the `devt` environment. Open a .http file, copy the code below and send the HTTP request.
-
-```
-POST {{baseUrl}}/v1/search
-Content-Type: application/json
-
 {
     "collections": [
-        "{{collectionCH2}}"
+        "ch.meteoschweiz.ogd-forecasting-icon-ch2"
     ],
     "forecast:reference_datetime": "2025-03-12T12:00:00Z",
     "forecast:variable": "TOT_PREC",
@@ -214,21 +194,43 @@ Content-Type: application/json
 }
 ```
 
-Where
-- `collections` distinguishes between the two models ICON-CH1-EPS and ICON-CH2-EPS,
-- `reference_datetime` defines the date and time of interest (here 2025-03-12 at 12:00:00),
-- `variable` describes the meteorological variable (here TOT_PREC - total precipitation),
-- `perturbed` decides wheather the data is deterministic (set to `False`) or contains multiple ensemble members and
-- `horizon` defines the forecast lead time (P0DT00H00M00S means instant data).
+Each parameter serves the following purpose:
+- `collections`: Defines the forecast model to use (`ICON-CH1-EPS` or `ICON-CH2-EPS`).
+- `forecast:reference_datetime`: Specifies the desired forecast initialization time (e.g., `2025-03-12T12:00:00Z`).
+- `forecast:variable`: Indicates the meteorological parameter of interest (`TOT_PREC` for total precipitation, for example).
+- `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
+- `forecast:horizon`: Defines the lead time of the forecast (`P0DT00H00M00S` for instant data).
 
-The response shows a dictonary containing multiple keys. Whithin the key
-`assets` under `<name_of_the_forecast>` locate the URL in `href`. Then open your terminal and run the next command line.
+#### 2.7.2 Sending the Request
+Using a tool like `curl`, send the request to the API endpoint:
+```
+curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
+     -H "Content-Type: application/json" \
+     -d @request.json
+```
 
+Alternatively, in Visual Studio Code, install the `REST Client` extension and create an `.http` file with the following content:
+```
+POST https://sys-data.int.bgdi.ch/api/stac/v1/search
+Content-Type: application/json
+
+{
+    "collections": [
+        "ch.meteoschweiz.ogd-forecasting-icon-ch2"
+    ],
+    "forecast:reference_datetime": "2025-03-12T12:00:00Z",
+    "forecast:variable": "TOT_PREC",
+    "forecast:perturbed": false,
+    "forecast:horizon": "P0DT00H00M00S"
+}
+```
+#### 2.7.3 Downloading the Forecast Data
+Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
+Download the GRIB file using the following command:
 ```
 wget -O <name_of_the_forecast> “<presigned URL>”
 ```
-
-The forecast is downloaded into your current directory.
+Once downloaded, you can proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with eccodes.
 
 #### 2.7.1 Install eccodes and COSMO definitions
 
