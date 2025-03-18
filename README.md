@@ -235,7 +235,7 @@ Once downloaded, you can proceed with decoding the GRIB file using the instructi
 #### 2.7.4 Installing ecCodes and COSMO definitions
 
 Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
-By default the GRIB file shows the short names defined by ECMWF. However, ICON has its own definitions.
+By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
 - Clone the github repositroy [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
