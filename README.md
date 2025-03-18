@@ -13,45 +13,39 @@ The following forecast data are available:
 
 ---
 
-## 1. Short-term forecast data
-[Nowcasting](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/nowcasting.html) involves high spatial and temporal resolution forecasts of weather developments for the next few minutes and up to a maximum of six hours ahead. MeteoSwiss uses these short-term forecasts to, among other things, predict thunderstorms, hail and heavy rainfall.
+## 1. Short-term forecast data (nowcasting)
+[Nowcasting](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/nowcasting.html) involves high spatial and temporal resolution forecasts of weather developments for the next few minutes and up to a maximum of six hours ahead. The forecasts are updated every 5 or 10 minutes taking into account the latest available observations.
+The Meteoswiss nowcasting system is calculated every 5-10 minutes and consists of a continuous nowcasting integrating different information sources, covering Switzerland and the neighbouring regions. The horizontal resolution is 1km. The 6-hour interval includes the seamless combination of observed, extrapolated and predicted data from the deterministic run of the ICON-CH1-EPS numerical weather pediction model. The current deterministic implementation (INCA-CH) compute just one ensemble member. A new generation of nowcasting system is in development. For this reason only a subset of the current INCA-CH parameters are available trough our open data provision. Additional parameters will be added in the next years.
 
-As MeteoSwiss is planning to replace the current 'INCA' nowcasting software, the following datasets are available from the start of our open data provision:
-- **Precipitation (10min values): quantitative chain (based on CombiPrecip, RR)**
-- **Wind, wind gust and wind direction (10min values)**
-- *Relative sunshine duration* (10min values)
-- **Total cloudiness (10min values)**
-
-The following datsets will be provided next:
-- **Snowfall (10min values): quantitative chain (based on CombiPrecip, RS)**
-- ...
-- ...
+The following datasets are available:
+- **Total precipitation (RP, 5 min values, radar based precipitation product)**
+- **Precipitation type (NT, 5 min values)**
+- **Snowfall (PN, 5 min values)**
+- **Wind mean (FF_10min, 10 min values)**
+- **Wind gust (WG_10min, 10 min values)**
+- **Wind direction (DD_10min, 10 min values)**
 
 ### 1.1. Data granularity, update frequency, format and volume
-Data granularity is every 10min. Update frequency for the period 0h- +6h is specified per dataset in the table below.
 
-Data format is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
+Data format of the dataset is [`NetCDF`](https://www.unidata.ucar.edu/software/netcdf).
 
-| Dataset | Update frequency | Example data file | Productive version file name | Estimated volume per file (MB) |
-|:----- | ----- |:----- |:----- | ----- |
-| **Precipitation (10min values): quantitative chain (based on CombiPrecip, RR)** | every 10min | [RR_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RR_INCA_202106280700.nc) | `ogd-nowcasting_RR-INCA_(date and time code).nc` | 1.7 |
-| **Wind, wind gust and wind direction (10min values)** | every 10min | [...](...) | `ogd-nowcasting_(product name)_(date and time code).nc` | ... |
-| *Relative sunshine duration* (10min values) | 10min | [SU_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/SU_INCA_202106280700.nc) | `ogd-nowcasting_SU-INCA_(date and time code).nc` | 6.4 |
-| *Total cloudiness* (10min values) | 10min | [SU_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/SU_INCA_202106280700.nc) | `ogd-nowcasting_SU-INCA_(date and time code).nc` | 6.4 |
-|       |       |       |       |       |
-| **Snowfall (10min values): quantitative chain (based on CombiPrecip, RS)** | every 10min | [RS_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RS_INCA_202106280700.nc) | `ogd-nowcasting_RS-INCA_(date and time code).nc` | 0.4 |
+| Dataset | Update frequency | Time granularity |Example data file | Productive version file name | Estimated volume per file (MB) |
+|:----- | ----- |:----- |:----- | ----- |:----- |
+| **Total precipitation (RP)** | 5 min |  5 min |[RP_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/RP_INCA_202106280700.nc) | `ogd-nowcasting_RP_(date and time code).nc` | 1-60 |
+| **Precipitation type (NT)** |  5 min |  5 min |[NT_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/NT_INCA_202106280700.nc) | `ogd-nowcasting_NT_(date and time code).nc` | 1.0 |
+| **Snowfall (PN)** |  5 min |  5 min |[PN_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/PN_INCA_202106280700.nc) | `ogd-nowcasting_PN_(date and time code).nc` | 1-40 |
+| **Wind mean (FF_10min)** |  10 min |  10 min | [FF_10min_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/PN_INCA_202106280700.nc)| `ogd-nowcasting_FF_10min_(date and time code).nc` | 60 |
+| **Wind gust (WG_10min)** |  10 min |  10 min | [WG_10min_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/PN_INCA_202106280700.nc)| `ogd-nowcasting_WG_10min_(date and time code).nc` | 60 |
+| **Wind direction (DD_10min)** | 10 min |  10 min | [DD_10min_INCA_202106280700.nc](https://github.com/MeteoSwiss/publication-opendata-inca-data-nowcasting/blob/main/PN_INCA_202106280700.nc)| `ogd-nowcasting_DD_10min_(date and time code).nc` | 60 |
 
 ### 1.2. Parameter metadata
-Parameter metadata is part of each NetCDF-File. See example data files in the table above.
-
-<!-- ### Codes -->
-<!-- ... -->
+Parameters metadata is part of each NetCDF-File. See example data files in the table above.
 
 ### 1.3. Coordinate system
-The coordinate system is Swiss LV95 EPSG:2056.
+The coordinate system is the Swiss CH1903/LV03 system ([EPSG 21781](https://epsg.io/21781)).
 
-### 1.4. Data visualisation
-See e.g. MeteoSwiss' [...](...).
+### 1.4. Data reading and visualization
+Examples of INCA data reading and visualisation can be found here: [INCA-examples](https://inca-examples.readthedocs.io/en/latest/) and [jupiter notebooks](https://github.com/MeteoSwiss/inca-examples).
 
 <br>
 
@@ -165,7 +159,7 @@ In the static HHL file one can obtain the height of the half levels of the verti
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
 The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
-### 🚧  **Temporary Notice Work in Progress **  
+### 🚧  **Temporary Notice Work in Progress **
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
