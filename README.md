@@ -173,11 +173,12 @@ When opening a data set in a jupyter notebook the load function includes fetchin
 
 ### 2.6 Data Visualisation
 
-See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
+See [jupyter-notebook examples]().
 
 ### 2.7 Retrieving Forecasts via REST API
 
-If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters
+If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters.
+
 #### 2.7.1 Submitting a POST Request
 
 Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, prepare a JSON request payload. Below is an example request body:
@@ -230,11 +231,11 @@ Download the GRIB file using the following command:
 ```
 wget -O <name_of_the_forecast> “<presigned URL>”
 ```
-Once downloaded, you can proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with eccodes.
+Once downloaded, proceed with decoding the GRIB file using the instructions in Section 2.7.4 Decoding GRIB Files with ecCodes.
 
 #### 2.7.4 Installing ecCodes and COSMO definitions
 
-Once you have a GRIB file, you need a tool to read it. We recommend installing eccodes from ECMWF.
+Once you have a GRIB file, you need a tool to read it. We recommend installing ecCodes from ECMWF.
 By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
@@ -254,8 +255,8 @@ export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/defin
 
 #### 2.7.5 Decoding GRIB Files with ecCodes
 
-This section provides a brief introduction to decoding GRIB files using **eccodes**.
-For more details, refer to the [ECMWF eccodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf). 
+This section provides a brief introduction to decoding GRIB files using **ecCodes**.
+For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
 
 Use the following commands to
 - Check ecCodes installation details:
@@ -287,7 +288,7 @@ grib_dump filename.grib
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
 
-⚠️ **WARNING**: Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def)
+⚠️ **WARNING**: Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
 
 <br>
 
