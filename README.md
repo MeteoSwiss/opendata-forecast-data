@@ -218,7 +218,7 @@ By default, the GRIB file shows the short names defined by ECMWF. However, the I
 In order to install them, apply the steps below.
 
 - Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
-- Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfYourFolder*.
+- Clone the GitHub repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder `<name_of_your_folder>`.
 
 > ⚠️ **WARNING**:
 > Make sure both repositories are in the same folder and run on the same version.
