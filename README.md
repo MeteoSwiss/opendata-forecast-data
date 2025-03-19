@@ -170,10 +170,11 @@ When opening a data set in a jupyter notebook the load function includes fetchin
 
 
 ### 2.6 🚀 Run Notebooks
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="vertical-align: middle; height: 40px;">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="vertical-align: middle;">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/MeteoSwiss/opendata-nwp-demos)
+<a href="https://github.com/MeteoSwiss/opendata-nwp-demos">
+    <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github" style="vertical-align: middle;">
+</a>
 
 
 <br>
