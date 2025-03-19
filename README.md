@@ -227,7 +227,7 @@ Finally, execute the following command to set the GRIB definition path:
 
 
 ```
-export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
+export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
 ```
 
 >❗ **NOTE**:
