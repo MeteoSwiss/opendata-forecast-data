@@ -204,7 +204,7 @@ Each parameter in the request body serves the following purpose:
 - `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
 #### 2.7.2 Downloading the Forecast Data
-Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
+Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<presigned URL>”
