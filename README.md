@@ -171,9 +171,15 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
-### 2.6 Data Visualisation
-
-See [jupyter-notebook examples]().
+### 2.6 🚀 Run Notebooks
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/MeteoSwiss/opendata-nwp-demos">
+    <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github" style="height: 22px; vertical-align: middle;">
+  </a>
+</p>
 
 ### 2.7 Retrieving Forecasts via REST API
 
@@ -230,7 +236,7 @@ Finally, execute the following command to set the GRIB definition path:
 export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
 ```
 
->❗ **NOTE**:
+> ❗ **NOTE**:
 > This command must be executed every time you start a new terminal session.
 
 #### 2.7.4 Decoding GRIB Files with ecCodes
@@ -270,6 +276,7 @@ grib_dump -w key1=value1,key2=value2 filename.grib
 
 > ⚠️ **WARNING**:
 > Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
+
 
 <br>
 
