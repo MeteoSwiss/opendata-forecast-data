@@ -207,7 +207,7 @@ Each parameter in the request body serves the following purpose:
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
-wget -O <desired_filename> “<presigned URL>”
+wget -O <desired_filename> “<pre-signed URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
