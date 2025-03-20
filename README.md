@@ -155,6 +155,8 @@ the horizontal grid, read section 2.1 in [Working with the ICON Model](https://w
 
 ### 2.5 Accessing Static Grid Information: Height, Longitude, and Latitude
 
+### 🚧  Temporary Notice Work in Progress
+
 Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid. Note that the forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static files HHL and CLON/CLAT.
 
@@ -172,9 +174,7 @@ In the static HHL file one can obtain the height of the half levels of the verti
 
 #### 2.5.2 How to access the longitude and latitude of a grid point
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
-### 🚧  Temporary Notice Work in Progress
-When retrieving a data file in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, follow the septs below.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. When retrieving a data file in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, follow the septs below.
 
 - Verify that the key `uuidOfHGrid` (Universally Unique Identifier) of the data file and the CLON/CLAT file match.
 - To each value of the data set attach the longitude from the GRIB message with the `shortName` tlon and the latitude from the GRIB message with the `shortName` tlat. Values at the same position corresond to each other.
