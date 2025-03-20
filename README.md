@@ -180,9 +180,15 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 - To each value of the data set attach the longitude from the GRIB message with the `shortName` tlon and the latitude from the GRIB message with the `shortName` tlat. Values at the same position corresond to each other.
 
 
-### 2.6 Data Visualisation
-
-See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
+### 2.6 🚀 Run Notebooks
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/MeteoSwiss/opendata-nwp-demos">
+    <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github" style="height: 22px; vertical-align: middle;">
+  </a>
+</p>
 
 ### 2.7 Retrieving Forecasts via REST API
 
@@ -213,10 +219,10 @@ Each parameter in the request body serves the following purpose:
 - `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
 #### 2.7.2 Downloading the Forecast Data
-Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the assets key. Locate the href field containing the pre-signed URL.
+Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
-wget -O <desired_filename> “<presigned URL>”
+wget -O <desired_filename> “<pre-signed URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
@@ -226,8 +232,8 @@ Once you have a GRIB file, you need a tool to read it. We recommend installing [
 By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
-- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder *nameOfYourFolder*.
-- Clone the github repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder *nameOfYourFolder*.
+- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder `<name_of_your_folder>`.
+- Clone the GitHub repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder `<name_of_your_folder>`.
 
 > ⚠️ **WARNING**:
 > Make sure both repositories are in the same folder and run on the same version.
@@ -236,10 +242,10 @@ Finally, execute the following command to set the GRIB definition path:
 
 
 ```
-export GRIB_DEFINITION_PATH=pathToNameOfYourFolder/eccodes-cosmo-recources/definitions:pathToNameOfYourFolder/eccodes/definitions
+export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
 ```
 
->❗ **NOTE**:
+> ❗ **NOTE**:
 > This command must be executed every time you start a new terminal session.
 
 #### 2.7.4 Decoding GRIB Files with ecCodes
@@ -279,6 +285,7 @@ grib_dump -w key1=value1,key2=value2 filename.grib
 
 > ⚠️ **WARNING**:
 > Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
+
 
 <br>
 
