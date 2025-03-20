@@ -182,7 +182,7 @@ When retrieving a data file in a jupyter notebook the load function includes fet
 
 ### 2.6 Data Visualisation
 
-See [jupyter-notebook examples]().
+See [jupyter-notebook examples](https://github.com/MeteoSwiss/opendata-nwp-demos).
 
 ### 2.7 Retrieving Forecasts via REST API
 
