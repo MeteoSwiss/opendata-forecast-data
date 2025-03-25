@@ -15,15 +15,15 @@ The following forecast data are available:
 
 ## 1. Short-term forecast data (nowcasting)
 [Nowcasting](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/nowcasting.html) involves high spatial and temporal resolution forecasts of weather developments for the next few minutes and up to a maximum of six hours ahead. The forecasts are updated every 5 or 10 minutes taking into account the latest available observations.
-The Meteoswiss nowcasting system is calculated every 5-10 minutes and consists of a continuous nowcasting integrating different information sources, covering Switzerland and the neighbouring regions. The horizontal resolution is 1km. The 6-hour interval includes the seamless combination of observed, extrapolated and predicted data from the deterministic run of the ICON-CH1-EPS numerical weather pediction model. The current deterministic implementation (INCA-CH) compute just one ensemble member. A new generation of nowcasting system is in development. For this reason only a subset of the current INCA-CH parameters are available trough our open data provision. Additional parameters will be added in the next years.
+The Meteoswiss nowcasting system is calculated every 5-10 minutes and consists of a continuous nowcasting integrating different information sources, covering Switzerland and the neighbouring regions. The horizontal resolution is 1km. The 6-hour interval includes the seamless combination of observed, extrapolated and predicted data from the deterministic run of the ICON-CH1-EPS numerical weather pediction model. The current deterministic implementation (INCA-CH) compute just one ensemble member. A new generation of nowcasting systems is in development. For this reason only a subset of the current INCA-CH parameters are available trough our open data provision. In the next years additional parameters as well as additional ensemble members will be added.
 
 The following datasets are available:
-- **Total precipitation (RP, 5 min values, radar based precipitation product)**
-- **Precipitation type (NT, 5 min values)**
-- **Snowfall (PN, 5 min values)**
-- **Wind mean 10 m (FF_10min, 10 min values)**
-- **Wind gust 10 m (WG_10min, 10 min values)**
-- **Wind direction 10 m (DD_10min, 10 min values)**
+- **Total precipitation (RP, 5 min values every 5 min, radar based precipitation product)**
+- **Precipitation type (NT, 5 min values every 5 min)**
+- **Snowfall (PN, 5 min values every 5 min)**
+- **Wind mean 10 m (FF_10min, 10 min values every 10 min)**
+- **Wind gust 10 m (WG_10min, 10 min values every 10 min)**
+- **Wind direction 10 m (DD_10min, 10 min values every 10 min)**
 - **Temperature 2 m (TT, 10 min values every 60 min)**
 - **Dew point temperature 2 m (TD, 10 min values every 60 min)**
 
