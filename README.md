@@ -270,7 +270,7 @@ the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
-The HHL file contains information about the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a given parameter to a height in meters above sea level, follow the steps below.
+In the static HHL file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
@@ -281,15 +281,15 @@ curl GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.og
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key of the data file and the HHL file match.
-- Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages. If `typeOfLevel` is
+- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the on in the HHL file.
+- Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
     - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
-    - **generalVerticalLayer**, **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
+    - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
     - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
 
 #### 2.7.2 Accessing Horizontal Grid Parameters
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. To retrieve CLON/CLAT manually, follow the septs below.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve CLON/CLAT manually, follow the septs below.
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
@@ -304,7 +304,6 @@ wget -O <desired_filename> “<pre-signed URL>”
 - For each data value, attach the corresponding:
     - Longitude from the GRIB message with `shortName = tlon`
     - Latitude from the GRIB message with `shortName = tlat`
-Values at the same position corresond to each other.
 
 <br>
 
