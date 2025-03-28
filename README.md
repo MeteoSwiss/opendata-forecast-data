@@ -281,17 +281,15 @@ curl GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.og
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded verify that the key `uuidOfHGrid` (Universally Unique Identifier) of the data file and the HHL file match.
-- Obtain the value for the key `level` and check the key `typeOfLevel` by listing the GRIB messages. If `typeOfLevel` is
-    - **generalVertical**, the level number of the key `level` matches the half level in the HHL file and returns the height in meters above sea level.
-    - **generalVerticalLayer**, the level number of the key `level` corresponds to the full level. To retrieve the height in meters above sea level, the user has to take the average height of the two half levels above and below the full level.
-    - any other type of level, it is specified in meters and is self-explanatory.
-
->❗ **NOTE**: Values at the same position refer to the same grid point.
+- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key of the data file and the HHL file match.
+- Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages. If `typeOfLevel` is
+    - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
+    - **generalVerticalLayer**, **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
+    - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
 
 #### 2.7.2 Accessing Horizontal Grid Parameters
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. To retrieve CLON/CLAT coordinates follow the septs below.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. To retrieve CLON/CLAT manually, follow the septs below.
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
@@ -302,10 +300,11 @@ curl GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.og
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded verify that the key `uuidOfHGrid` (Universally Unique Identifier) of the data file and the CLON/CLAT file match.
-- To each value of the data set attach the longitude from the GRIB message with the `shortName` tlon and the latitude from the GRIB message with the `shortName` tlat. Values at the same position corresond to each other.
-
->❗ **NOTE**: Values at the same position refer to the same grid point.
+- Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the CLON/CLAT file
+- For each data value, attach the corresponding:
+    - Longitude from the GRIB message with `shortName = tlon`
+    - Latitude from the GRIB message with `shortName = tlat`
+Values at the same position corresond to each other.
 
 <br>
 
