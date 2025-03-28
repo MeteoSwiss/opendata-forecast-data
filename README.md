@@ -266,11 +266,11 @@ grib_dump -w key1=value1,key2=value2 filename.grib
 Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid.
 
-> ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the vertical (HHL) and horizontal (CLON/CLAT) static GRIB files.
+> ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical (HHL) and horizontal (CLON/CLAT) grid parameters file.
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
-The Vertical Grid Parameters file contains information about the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a given parameter to a height in meters above sea level, follow the steps below.
+The HHL file contains information about the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a given parameter to a height in meters above sea level, follow the steps below.
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
@@ -293,7 +293,7 @@ wget -O <desired_filename> “<pre-signed URL>”
 
 The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid. To retrieve CLON/CLAT coordinates follow the septs below.
 
-- - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
+- Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
 curl GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
