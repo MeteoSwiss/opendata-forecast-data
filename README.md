@@ -147,7 +147,7 @@ For details on reading GRIB key values, see the section [Section 2.7.4 Decoding 
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-Besides the grid above the surface, there is also a grid below land. It is much simpler because the **level number corresponds to meters below ground**. For example, the parameter "soil temperature", abbreviated as T_SO, is constructed as describe above.
+In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
 #### 2.4.2 Horizontal Grid
 
