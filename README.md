@@ -68,6 +68,7 @@ The documentation covers the following topics:
 - [2.5 🚀 Run Notebooks](#25-🚀-run-notebooks)
 - [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
 - [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
+- [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
 
 ### 2.1 Model Specifications
 
@@ -200,67 +201,6 @@ wget -O <desired_filename> “<pre-signed URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
-#### 2.6.3 Installing ecCodes and COSMO definitions
-
-Once you have a GRIB file, you need a tool to read it. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
-By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
-In order to install them, apply the steps below.
-
-- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder `<name_of_your_folder>`.
-- Clone the GitHub repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder `<name_of_your_folder>`.
-
-> ⚠️ **WARNING**:
-> Make sure both repositories are in the same folder and run on the same version.
-
-Finally, execute the following command to set the GRIB definition path:
-
-
-```
-export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
-```
-
-> ❗ **NOTE**:
-> This command must be executed every time you start a new terminal session.
-
-#### 2.7.4 Decoding GRIB Files with ecCodes
-
-This section provides a brief introduction to decoding GRIB files using **ecCodes**.
-For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
-
-Use the following commands to
-- Check ecCodes installation details:
-```
-codes_info
-```
-
-- List all the GRIB messages in a file:
-```
-grib_ls filename.grib
-```
-
-- Filter GRIB messages based on key-value conditions:
-```
-grib_ls -w key1=value1,key2=value2 filename.grib
-```
-
-- Specify a list of keys to be printed:
-```
-grib_ls -p key1,key2 filename.grib
-```
-
-- Get a detailed view of the content of all GRIB messages:
-```
-grib_dump filename.grib
-```
-- Get a detailed view of GRIB messages with filters:
-```
-grib_dump -w key1=value1,key2=value2 filename.grib
-```
-
-> ⚠️ **WARNING**:
-> Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
-
-
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
 Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
@@ -304,6 +244,69 @@ wget -O <desired_filename> “<pre-signed URL>”
 - For each data value, attach the corresponding:
     - Longitude from the GRIB message with `shortName = tlon`
     - Latitude from the GRIB message with `shortName = tlat`
+
+### 2.8 Reading Forecast Files Using ecCodes
+
+Once you have the desired GRIB files, you need a tool to read them. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
+
+#### 2.8.1 Installing ecCodes and COSMO definitions
+
+By default, a GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
+In order to install them, apply the steps below.
+
+- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder `<name_of_your_folder>`.
+- Clone the GitHub repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder `<name_of_your_folder>`.
+
+> ⚠️ **WARNING**:
+> Make sure both repositories are in the same folder and run on the same version.
+
+Finally, execute the following command to set the GRIB definition path:
+
+
+```
+export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
+```
+
+> ❗ **NOTE**:
+> This command must be executed every time you start a new terminal session.
+
+#### 2.8.2 Decoding GRIB Files with ecCodes
+
+This section provides a brief introduction to decoding GRIB files using **ecCodes**.
+For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
+
+Use the following commands to
+- Check ecCodes installation details:
+```
+codes_info
+```
+
+- List all the GRIB messages in a file:
+```
+grib_ls filename.grib
+```
+
+- Filter GRIB messages based on key-value conditions:
+```
+grib_ls -w key1=value1,key2=value2 filename.grib
+```
+
+- Specify a list of keys to be printed:
+```
+grib_ls -p key1,key2 filename.grib
+```
+
+- Get a detailed view of the content of all GRIB messages:
+```
+grib_dump filename.grib
+```
+- Get a detailed view of GRIB messages with filters:
+```
+grib_dump -w key1=value1,key2=value2 filename.grib
+```
+
+> ⚠️ **WARNING**:
+> Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
 
 <br>
 
