@@ -180,7 +180,7 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
-### 2.6 🚀 Data Visualisation with Jupyter Notebooks
+### 2.6 🚀 Example Notebooks: From Retrieval to Visualization
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
