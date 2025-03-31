@@ -281,7 +281,7 @@ curl GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.og
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the on in the HHL file.
+- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
 - Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
     - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
     - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
