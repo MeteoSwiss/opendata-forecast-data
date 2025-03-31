@@ -289,7 +289,7 @@ wget -O <desired_filename> “<pre-signed URL>”
 
 #### 2.7.2 Accessing Horizontal Grid Parameters
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve CLON/CLAT manually, follow the septs below.
+The CLON/CLAT file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve CLON/CLAT, follow the steps below:
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
