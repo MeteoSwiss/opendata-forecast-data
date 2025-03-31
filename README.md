@@ -125,9 +125,9 @@ For example, vertical velocity is stored at multiple vertical levels, while the 
 
 #### 2.4.1 Vertical Grid
 
-The vertical grid above the surface is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
+The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
-The so-called half levels align with horizontal grid points, while the full levels represent an averaged value over a vertical interval.
+The so-called half levels align with vertical grid points, while the full levels represent an averaged value over a vertical interval.
 There are 81 discrete half levels and 80 full levels in our data.
 
 <div align=center>
@@ -136,7 +136,16 @@ There are 81 discrete half levels and 80 full levels in our data.
 Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
 </div>
 
-Most of the parameters have their information on full levels. There are some exceptions like "vertical velocity" abbreviated as W. W is stored on half levels and therefore called staggered. This means that the value is exact in this point. Unlike the full levels, which are an avarage value over a layer stored in one point. For more detailed information on the vertical grid above the surface, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+Most parameters are stored on full vertical levels, while some — such as the vertical velocity `W` — are stored on half (staggered) levels.
+To determine the vertical positioning of a parameter, inspect the GRIB2 key `typeOfLevel`:
+
+* `generalVertical` indicates half levels
+
+* `generalVerticalLayer` indicates full levels
+
+For details on reading GRIB key values, see the section [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+
+For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 Besides the grid above the surface, there is also a grid below land. It is much simpler because the **level number corresponds to meters below ground**. For example, the parameter "soil temperature", abbreviated as T_SO, is constructed as describe above.
 
