@@ -66,7 +66,7 @@ The documentation covers the following topics:
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
 - [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
-- [2.6 Data Visualisation](#26-data-visualisation)
+- [2.6 Example Notebooks: From Retrieval to Visualization](#26-🚀-example-notebooks-from-retrieval-to-visualization)
 - [2.7 Retrieving Forecasts via REST API](#27-retrieving-forecasts-via-rest-api)
 
 ### 2.1 Model Specifications
@@ -125,7 +125,7 @@ For example, vertical velocity is stored at multiple vertical levels, while the 
 
 #### 2.4.1 Vertical Grid
 
-The vertical grid is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
+The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
 The so-called half levels align with vertical grid points, while the full levels represent an averaged value over a vertical interval.
 There are 81 discrete half levels and 80 full levels in our data.
@@ -136,7 +136,7 @@ There are 81 discrete half levels and 80 full levels in our data.
 Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
 </div>
 
-Most parameters are stored on full vertical levels, while some—such as the vertical velocity `W`—are stored on half (staggered) levels.
+Most parameters are stored on full vertical levels, while some — such as the vertical velocity `W` — are stored on half (staggered) levels.
 To determine the vertical positioning of a parameter, inspect the GRIB2 key `typeOfLevel`:
 
 * `generalVertical` indicates half levels
@@ -146,6 +146,8 @@ To determine the vertical positioning of a parameter, inspect the GRIB2 key `typ
 For details on reading GRIB key values, see the section [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
 #### 2.4.2 Horizontal Grid
 
@@ -178,7 +180,7 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
-### 2.6 🚀 Run Notebooks
+### 2.6 🚀 Example Notebooks: From Retrieval to Visualization
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
