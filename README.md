@@ -65,7 +65,7 @@ The documentation covers the following topics:
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
-- [2.5 🚀 Run Notebooks](#25-🚀-run-notebooks)
+- [2.5 🚀 Example Notebooks: From Retrieval to Visualization](#25-🚀-example-notebooks-from-retrieval-to-visualization)
 - [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
 - [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
 - [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
@@ -126,9 +126,9 @@ For example, vertical velocity is stored at multiple vertical levels, while the 
 
 #### 2.4.1 Vertical Grid
 
-The vertical grid is a height based coordinate system that follows the terrain. It is divided into multiple layers. The closer the layer is to
+The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
-The so-called half levels align with horizontal grid points, while the full levels represent an averaged value over a vertical interval.
+The so-called half levels align with vertical grid points, while the full levels represent an averaged value over a vertical interval.
 There are 81 discrete half levels and 80 full levels in our data.
 
 <div align=center>
@@ -137,9 +137,18 @@ There are 81 discrete half levels and 80 full levels in our data.
 Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
 </div>
 
-All parameters have their information on full levels, except for the vertical velocity W. W is stored on half levels and therefore called staggered.
-This means that the value is exact in this point
-and not an avarage value over a layer stored in one point like the full levels. For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+Most parameters are stored on full vertical levels, while some — such as the vertical velocity `W` — are stored on half (staggered) levels.
+To determine the vertical positioning of a parameter, inspect the GRIB2 key `typeOfLevel`:
+
+* `generalVertical` indicates half levels
+
+* `generalVerticalLayer` indicates full levels
+
+For details on reading GRIB key values, see the section [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+
+For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
 #### 2.4.2 Horizontal Grid
 
@@ -155,7 +164,8 @@ Since the provided data is given in the native grid, note that the grid points c
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
 
-### 2.5 🚀 Run Notebooks
+### 2.5 🚀 Example Notebooks: From Retrieval to Visualization
+
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
