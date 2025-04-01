@@ -66,7 +66,7 @@ The documentation covers the following topics:
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
 - [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
-- [2.6 Example Notebooks: From Retrieval to Visualization](#26-🚀-example-notebooks-from-retrieval-to-visualization)
+- [2.6 Example Notebooks: From Retrieval to Visualization](#26-example-notebooks-from-retrieval-to-visualization)
 - [2.7 Retrieving Forecasts via REST API](#27-retrieving-forecasts-via-rest-api)
 
 ### 2.1 Model Specifications
@@ -180,7 +180,7 @@ The CLON/CLAT file stores the longitude and latitude of the center points of eac
 When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
 
 
-### 2.6 🚀 Example Notebooks: From Retrieval to Visualization
+### 2.6 Example Notebooks: From Retrieval to Visualization
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
