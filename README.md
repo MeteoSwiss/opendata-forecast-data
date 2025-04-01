@@ -65,7 +65,7 @@ The documentation covers the following topics:
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
-- [2.5 🚀 Example Notebooks: From Retrieval to Visualization](#25-🚀-example-notebooks-from-retrieval-to-visualization)
+- [2.5 Example Notebooks: From Retrieval to Visualization](#25-🚀-example-notebooks-from-retrieval-to-visualization)
 - [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
 - [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
 - [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
@@ -163,8 +163,7 @@ Illustration of the grid construction, Working with the ICON Model, Figure 2.1
 Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-
-### 2.5 🚀 Example Notebooks: From Retrieval to Visualization
+### 2.5 Example Notebooks: From Retrieval to Visualization
 
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
