@@ -250,9 +250,8 @@ curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz
 wget -O <desired_filename> “<pre-signed URL>”
 ```
 4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
-5. For each data value, attach the corresponding:
-    - Longitude from the GRIB message with `shortName = tlon`
-    - Latitude from the GRIB message with `shortName = tlat`
+
+> ❗ **NOTE**: We recommend inexperienced GRIB file users to take a look at the provided [Jupyter Notebooks](https://github.com/MeteoSwiss/opendata-nwp-demos). The data retrieval in the Notebooks includes fetching longitude and latitude.
 
 ### 2.8 Reading Forecast Files Using ecCodes
 
