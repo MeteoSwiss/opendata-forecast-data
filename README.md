@@ -215,42 +215,42 @@ Once downloaded, proceed with decoding the GRIB file using the instructions in [
 Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle on the horizontal grid.
 
-> ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical (HHL) and horizontal (CLON/CLAT) grid parameters file.
+> ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameters file.
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
-In the static file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
+In the static vertical file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
 
-1. Submit a GET request specifying the collection you want to retrieve the static files from (e.g., `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS):
+1. Submit a GET request specifying the collection you want to retrieve the static vertical files from (e.g., `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS):
 ```
 curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
-- Locate under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
-- Download the file with:
+2. Locate under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+3. Download the file with:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
-- Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
+4. Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
+5. Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
     - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
     - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
     - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
 
 #### 2.7.2 Accessing Horizontal Grid Parameters
 
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve CLON/CLAT, follow the steps below:
+The static horizontal file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve this information, follow the steps below:
 
-- Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
+1. Submit a GET request specifying the collection you want to download the static horizontal files from (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
 curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
-- Locate under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
-- Download the file with:
+2. Locate under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+3. Download the file with:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-- Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the CLON/CLAT file
-- For each data value, attach the corresponding:
+4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
+5. For each data value, attach the corresponding:
     - Longitude from the GRIB message with `shortName = tlon`
     - Latitude from the GRIB message with `shortName = tlat`
 
