@@ -65,7 +65,7 @@ The documentation covers the following topics:
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
-- [2.5 Example Notebooks: From Retrieval to Visualization](#25-🚀-example-notebooks-from-retrieval-to-visualization)
+- [2.5 Example Notebooks: From Retrieval to Visualization](#25-example-notebooks-from-retrieval-to-visualization)
 - [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
 - [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
 - [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
