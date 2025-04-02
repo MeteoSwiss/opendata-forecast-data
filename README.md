@@ -219,7 +219,7 @@ the center point coordinates of each triangle on the horizontal grid.
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
-In the static HHL file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
+In the static file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
 
 - Submit a GET request specifying which model's asset should be downloaded (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
