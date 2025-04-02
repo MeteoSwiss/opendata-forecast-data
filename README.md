@@ -215,7 +215,7 @@ Once downloaded, proceed with decoding the GRIB file using the instructions in [
 Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle on the horizontal grid.
 
-> ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
+> ❗ **NOTE**: The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
@@ -238,6 +238,8 @@ wget -O <desired_filename> “<pre-signed URL>”
 
 #### 2.7.2 Accessing Horizontal Grid Parameters
 
+> ❗ **NOTE**: We recommend inexperienced GRIB file users to take a look at the provided [Jupyter Notebooks](https://github.com/MeteoSwiss/opendata-nwp-demos). The data retrieval with the Python API includes fetching longitude and latitude.
+
 The static horizontal file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve this information, follow the steps below:
 
 1. Submit a GET request specifying the collection you want to download the static horizontal files from (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
@@ -250,8 +252,6 @@ curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz
 wget -O <desired_filename> “<pre-signed URL>”
 ```
 4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
-
-> ❗ **NOTE**: We recommend inexperienced GRIB file users to take a look at the provided [Jupyter Notebooks](https://github.com/MeteoSwiss/opendata-nwp-demos). The data retrieval in the Notebooks includes fetching longitude and latitude.
 
 ### 2.8 Reading Forecast Files Using ecCodes
 
