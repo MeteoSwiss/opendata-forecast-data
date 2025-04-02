@@ -96,6 +96,8 @@ The parameter metadata is part of each GRIB file.
 
 Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
+> ⚠️ **WARNING**: The boundary of the spatial domain may contain random data.
+
 #### 2.3.1 Forecast Data Volume
 
 The following tables summarize the volume of the different forecast files for **ICON-CH1** and **ICON-CH2**.
