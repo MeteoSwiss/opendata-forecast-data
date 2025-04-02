@@ -85,7 +85,9 @@ The documentation covers the following topics:
 
 ### 2.2 Available Parameters
 
-Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
+### 🚧  **Temporary Notice Work in Progress**
+
+Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level assets of the above collections.
 
 #### 2.2.1 Parameter Metadata
 
