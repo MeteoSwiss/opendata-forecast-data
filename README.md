@@ -212,7 +212,7 @@ Once downloaded, proceed with decoding the GRIB file using the instructions in [
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
-Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
+Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid.
 
 > ❗ **NOTE**: The forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical (HHL) and horizontal (CLON/CLAT) grid parameters file.
