@@ -85,7 +85,7 @@ The documentation covers the following topics:
 
 ### 2.2 Data Availability
 
-This section describes what kind of information is provided and how long it is accessible.
+This section describes what information is provided and how long it is accessible.
 
 #### 2.2.1 Available Forecast Data
 
