@@ -84,35 +84,38 @@ The documentation covers the following topics:
 | Format | GRIB edition 2 | GRIB edition 2 |
 
 
-### 2.2 Available Parameters
+### 2.2 Data Availability
 
-### 🚧  **Temporary Notice Work in Progress**
+This section describes what kind of information is provided and how long it is accessible.
 
-Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level assets of the above collections.
-
-#### 2.2.1 Parameter Metadata
-
-The parameter metadata is part of each GRIB file.
-
-
-### 2.3 Accessing Forecast Data
+#### 2.2.1 Available Forecast Data
 
 Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
 > ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
-#### 2.3.1 Forecast Data Volume
+#### 2.2.2 Available Parameters
 
-The following tables summarize the volume of the different forecast files for **ICON-CH1** and **ICON-CH2**.
+#### 🚧  **Temporary Notice Work in Progress**
 
-**ICON-CH1 Data Volume**
+Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection of the above collections under `Assets`.
+
+#### 2.2.3 Parameter Metadata
+
+The parameter metadata is part of each GRIB file.
+
+#### 2.2.4 Forecast Data Volume
+
+The following tables summarize the volume of the different forecast files for **ICON-CH1-EPS** and **ICON-CH2-EPS**.
+
+**ICON-CH1-EPS Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
 | Perturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
 
 
-**ICON-CH2 Data Volume**
+**ICON-CH2-EPS Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
@@ -122,8 +125,8 @@ The following tables summarize the volume of the different forecast files for **
 ### 2.4 3D Grid Structure and Representation
 The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
 Parameters are classified as either **single-level** or **multi-level**:
-- **Single-level parameters** contain data at a specific vertical level.
-- **Multi-level parameters** extend across multiple vertical layers.
+- **Single-Level parameters** contain data at a specific vertical level.
+- **Multi-Level parameters** extend across multiple vertical layers.
 
 For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
 
