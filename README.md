@@ -148,7 +148,7 @@ To determine the vertical positioning of a parameter, inspect the GRIB2 key `typ
 
 * `generalVerticalLayer` indicates full levels
 
-For details on reading GRIB key values, see the section [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+For details on reading GRIB key values, see [section 2.7.2 Decoding GRIB Files with ecCodes](#272-decoding-grib-files-with-eccodes).
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
@@ -214,7 +214,7 @@ Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+Once downloaded, proceed with decoding the GRIB file using the instructions in [section 2.7.2 Decoding GRIB Files with ecCodes](#272-decoding-grib-files-with-eccodes).
 
 ### 2.6 Accessing Static Grid Information: Height, Longitude, and Latitude
 
