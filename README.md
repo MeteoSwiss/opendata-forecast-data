@@ -91,8 +91,6 @@ This section describes what kind of information is provided and how long it is a
 
 The forecast model data is accessible from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
-> ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
-
 #### 2.2.2 Available Parameters
 
 #### 🚧  **Temporary Notice Work in Progress**
@@ -168,6 +166,8 @@ Illustration of the grid construction, Working with the ICON Model, Figure 2.1
 
 Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
+
+> ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
 ### 2.4 Example Notebooks: From Retrieval to Visualization
 
