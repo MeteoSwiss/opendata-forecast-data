@@ -62,13 +62,12 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 The documentation covers the following topics:
 - [2.1 Model Specifications](#21-model-specifications)
-- [2.2 Available Parameters](#22-available-parameters)
-- [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
-- [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
-- [2.5 Example Notebooks: From Retrieval to Visualization](#25-example-notebooks-from-retrieval-to-visualization)
-- [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
-- [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
-- [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
+- [2.2 Data Availability](#22-data-availability)
+- [2.3 3D Grid Structure and Representation](#23-3d-grid-structure-and-representation)
+- [2.4 Example Notebooks: From Retrieval to Visualization](#24-example-notebooks-from-retrieval-to-visualization)
+- [2.5 Retrieving Forecasts via REST API](#25-retrieving-forecasts-via-rest-api)
+- [2.6 Accessing Static Grid Information: Height, Longitude, and Latitude](#26-accessing-static-grid-information-height-longitude-and-latitude)
+- [2.7 Reading Forecast Files Using ecCodes](#27-reading-forecast-files-using-eccodes)
 
 ### 2.1 Model Specifications
 
@@ -90,7 +89,7 @@ This section describes what kind of information is provided and how long it is a
 
 #### 2.2.1 Available Forecast Data
 
-Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
+The forecast model data is accessible from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
 
 > ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
@@ -98,7 +97,7 @@ Users can access forecast model data from the last **24 hours**. Data older than
 
 #### 🚧  **Temporary Notice Work in Progress**
 
-Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection of the above collections under `Assets`.
+Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level `Assets` of the above collections.
 
 #### 2.2.3 Parameter Metadata
 
@@ -111,18 +110,18 @@ The following tables summarize the volume of the different forecast files for **
 **ICON-CH1-EPS Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
-| Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
-| Perturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
+| Deterministic| 199.0 Bytes - 2.2 MiB| 19.7 - 177.4 MiB|
+| Perturbed | 21.9 MiB - 1.7 GiB | 1.9 KiB - 1.7 GiB |
 
 
 **ICON-CH2-EPS Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
-| Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
-| Perturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
+| Deterministic| 175.0 Bytes - 43.9 MiB| 199.0 Bytes - 43.9 MiB|
+| Perturbed | 3.4 KiB - 877.5 MiB | 3.9 KiB - 877.5 MiB |
 
 
-### 2.4 3D Grid Structure and Representation
+### 2.3 3D Grid Structure and Representation
 The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
 Parameters are classified as either **single-level** or **multi-level**:
 - **Single-Level parameters** contain data at a specific vertical level.
@@ -131,7 +130,7 @@ Parameters are classified as either **single-level** or **multi-level**:
 For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
 
 
-#### 2.4.1 Vertical Grid
+#### 2.3.1 Vertical Grid
 
 The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
@@ -157,7 +156,7 @@ For more detailed information on the vertical grid, read section 3.4 in [Working
 
 In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
-#### 2.4.2 Horizontal Grid
+#### 2.3.2 Horizontal Grid
 
 The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
 
@@ -170,7 +169,7 @@ Illustration of the grid construction, Working with the ICON Model, Figure 2.1
 Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-### 2.5 Example Notebooks: From Retrieval to Visualization
+### 2.4 Example Notebooks: From Retrieval to Visualization
 
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -181,11 +180,11 @@ the horizontal grid, read section 2.1 in [Working with the ICON Model](https://w
   </a>
 </p>
 
-### 2.6 Retrieving Forecasts via REST API
+### 2.5 Retrieving Forecasts via REST API
 
 If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters.
 
-#### 2.6.1 Submitting a POST Request
+#### 2.5.1 Submitting a POST Request
 
 Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
@@ -209,7 +208,7 @@ Each parameter in the request body serves the following purpose:
 - `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
 - `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
-#### 2.6.2 Downloading the Forecast Data
+#### 2.5.2 Downloading the Forecast Data
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
@@ -217,14 +216,14 @@ wget -O <desired_filename> “<pre-signed URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
-### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
+### 2.6 Accessing Static Grid Information: Height, Longitude, and Latitude
 
 Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle on the horizontal grid.
 
 > ❗ **NOTE**: The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
 
-#### 2.7.1 Accessing Vertical Grid Parameters
+#### 2.6.1 Accessing Vertical Grid Parameters
 
 In the static vertical file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
 
@@ -243,7 +242,7 @@ wget -O <desired_filename> “<pre-signed URL>”
     - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
     - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
 
-#### 2.7.2 Accessing Horizontal Grid Parameters
+#### 2.6.2 Accessing Horizontal Grid Parameters
 
 > ❗ **NOTE**: We recommend inexperienced GRIB file users to take a look at the provided [Jupyter Notebooks](https://github.com/MeteoSwiss/opendata-nwp-demos). The data retrieval with the Python API includes fetching longitude and latitude.
 
@@ -260,11 +259,11 @@ wget -O <desired_filename> “<pre-signed URL>”
 ```
 4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
 
-### 2.8 Reading Forecast Files Using ecCodes
+### 2.7 Reading Forecast Files Using ecCodes
 
 Once you have the desired GRIB files, you need a tool to read them. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
 
-#### 2.8.1 Installing ecCodes and COSMO definitions
+#### 2.7.1 Installing ecCodes and COSMO definitions
 
 By default, a GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
@@ -285,7 +284,7 @@ export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/defini
 > ❗ **NOTE**:
 > This command must be executed every time you start a new terminal session.
 
-#### 2.8.2 Decoding GRIB Files with ecCodes
+#### 2.7.2 Decoding GRIB Files with ecCodes
 
 This section provides a brief introduction to decoding GRIB files using **ecCodes**.
 For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
