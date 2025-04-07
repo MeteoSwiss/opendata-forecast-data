@@ -85,7 +85,9 @@ The documentation covers the following topics:
 
 ### 2.2 Available Parameters
 
-Users can find information about available parameters, including metadata, in the collection level assets of the above collections.
+### 🚧  **Temporary Notice Work in Progress**
+
+Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level assets of the above collections.
 
 #### 2.2.1 Parameter Metadata
 
@@ -95,6 +97,8 @@ The parameter metadata is part of each GRIB file.
 ### 2.3 Accessing Forecast Data
 
 Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
+
+> ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
 #### 2.3.1 Forecast Data Volume
 
