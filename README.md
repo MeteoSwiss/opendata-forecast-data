@@ -236,7 +236,7 @@ wget -O <desired_filename> “<pre-signed URL>”
 ```
 4. Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
 5. Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
-    - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
+    - **generalVertical**: The value of `level` corresponds to a half level in the HHL file. For each level (i.e., each GRIB message), the varible `h` provides the height in meters above sea level for every gird point.
     - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
     - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
 
