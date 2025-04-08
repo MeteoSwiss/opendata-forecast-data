@@ -62,8 +62,8 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 The documentation covers the following topics:
 - [2.1 Model Specifications](#21-model-specifications)
-- [2.2 Data Availability](#22-data-availability)
-- [2.3 3D Grid Structure and Representation](#23-3d-grid-structure-and-representation)
+- [2.2 3D Grid Structure and Representation](#22-3d-grid-structure-and-representation)
+- [2.3 Data Availability](#23-data-availability)
 - [2.4 Example Notebooks: From Retrieval to Visualization](#24-example-notebooks-from-retrieval-to-visualization)
 - [2.5 Retrieving Forecasts via REST API](#25-retrieving-forecasts-via-rest-api)
 - [2.6 Accessing Static Grid Information: Height, Longitude, and Latitude](#26-accessing-static-grid-information-height-longitude-and-latitude)
@@ -83,43 +83,7 @@ The documentation covers the following topics:
 | Format | GRIB edition 2 | GRIB edition 2 |
 
 
-### 2.2 Data Availability
-
-This section describes what information is provided and how long it is accessible.
-
-#### 2.2.1 Available Forecast Data
-
-The forecast model data is accessible from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
-
-#### 2.2.2 Available Parameters
-
-#### 🚧  **Temporary Notice Work in Progress**
-
-Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level `Assets` of the above collections.
-
-#### 2.2.3 Parameter Metadata
-
-The parameter metadata is part of each GRIB file.
-
-#### 2.2.4 Forecast Data Volume
-
-The following tables summarize the volume of the different forecast files for **ICON-CH1-EPS** and **ICON-CH2-EPS**.
-
-**ICON-CH1-EPS Data Volume**
-| | Single-Level Files| Multi-Level Files|
-|-----------|------------------|-----------------|
-| Deterministic| 199.0 Bytes - 2.2 MiB| 19.7 - 177.4 MiB|
-| Perturbed | 21.9 MiB - 1.7 GiB | 1.9 KiB - 1.7 GiB |
-
-
-**ICON-CH2-EPS Data Volume**
-| | Single-Level Files| Multi-Level Files|
-|-----------|------------------|-----------------|
-| Deterministic| 175.0 Bytes - 43.9 MiB| 199.0 Bytes - 43.9 MiB|
-| Perturbed | 3.4 KiB - 877.5 MiB | 3.9 KiB - 877.5 MiB |
-
-
-### 2.3 3D Grid Structure and Representation
+### 2.2 3D Grid Structure and Representation
 The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
 Parameters are classified as either **single-level** or **multi-level**:
 - **Single-Level parameters** contain data at a specific vertical level.
@@ -128,7 +92,7 @@ Parameters are classified as either **single-level** or **multi-level**:
 For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
 
 
-#### 2.3.1 Vertical Grid
+#### 2.2.1 Vertical Grid
 
 The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
 the surface, the narrower the layers are, as shown in the image below.
@@ -154,7 +118,7 @@ For more detailed information on the vertical grid, read section 3.4 in [Working
 
 In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
-#### 2.3.2 Horizontal Grid
+#### 2.2.2 Horizontal Grid
 
 The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
 
@@ -167,7 +131,42 @@ Illustration of the grid construction, Working with the ICON Model, Figure 2.1
 Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
+### 2.3 Data Availability
+
+This section describes what information is provided and how long it is accessible.
+
+#### 2.3.1 Available Forecast Data
+
+The forecast model data is accessible from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
+
 > ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
+
+#### 2.3.2 Available Parameters
+
+#### 🚧  **Temporary Notice Work in Progress**
+
+Users can find information about available parameters, including metadata about height, longitude and latitude, in the collection level `Assets` of the above collections.
+
+#### 2.3.3 Parameter Metadata
+
+The parameter metadata is part of each GRIB file.
+
+#### 2.3.4 Forecast Data Volume
+
+The following tables summarize the volume of the different forecast files for **ICON-CH1-EPS** and **ICON-CH2-EPS**.
+
+**ICON-CH1-EPS Data Volume**
+| | Single-Level Files| Multi-Level Files|
+|-----------|------------------|-----------------|
+| Deterministic| 199.0 Bytes - 2.2 MiB| 19.7 - 177.4 MiB|
+| Perturbed | 21.9 MiB - 1.7 GiB | 1.9 KiB - 1.7 GiB |
+
+
+**ICON-CH2-EPS Data Volume**
+| | Single-Level Files| Multi-Level Files|
+|-----------|------------------|-----------------|
+| Deterministic| 175.0 Bytes - 43.9 MiB| 199.0 Bytes - 43.9 MiB|
+| Perturbed | 3.4 KiB - 877.5 MiB | 3.9 KiB - 877.5 MiB |
 
 ### 2.4 Example Notebooks: From Retrieval to Visualization
 
