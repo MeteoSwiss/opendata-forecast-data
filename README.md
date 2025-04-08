@@ -65,9 +65,10 @@ The documentation covers the following topics:
 - [2.2 Available Parameters](#22-available-parameters)
 - [2.3 Accessing Forecast Data](#23-accessing-forecast-data)
 - [2.4 3D Grid Structure and Representation](#24-3d-grid-structure-and-representation)
-- [2.5 Accessing Static Grid Information: Height, Longitude, and Latitude](#25-accessing-static-grid-information-height-longitude-and-latitude)
-- [2.6 Example Notebooks: From Retrieval to Visualization](#26-example-notebooks-from-retrieval-to-visualization)
-- [2.7 Retrieving Forecasts via REST API](#27-retrieving-forecasts-via-rest-api)
+- [2.5 Example Notebooks: From Retrieval to Visualization](#25-example-notebooks-from-retrieval-to-visualization)
+- [2.6 Retrieving Forecasts via REST API](#26-retrieving-forecasts-via-rest-api)
+- [2.7 Accessing Static Grid Information: Height, Longitude, and Latitude](#27-accessing-static-grid-information-height-longitude-and-latitude)
+- [2.8 Reading Forecast Files Using ecCodes](#28-reading-forecast-files-using-eccodes)
 
 ### 2.1 Model Specifications
 
@@ -166,25 +167,8 @@ Illustration of the grid construction, Working with the ICON Model, Figure 2.1
 Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-### 2.5 Accessing Static Grid Information: Height, Longitude, and Latitude
+### 2.5 Example Notebooks: From Retrieval to Visualization
 
-Besides the current forecasting files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
-the center point coordinates of each triangle (CLON/CLAT) on the horizontal grid. Note that the forecasting GRIB files contain no information on height, longitude and latitude. They have to be determined via the static files HHL and CLON/CLAT.
-
-#### 2.5.1 How to access the height of a grid point
-
-In the static HHL file one can obtain the height of the half levels of the vertical grid in meters above see level. In order to point a value from the data file of a wanted parameter to a specific height, follow the steps below.
-- Check if the `UUID` (Universally Unique Identifier) of the data file and the HHL file match.
-- Then, use the `scaledValueOfFirstFixedSurface` value to retrieve the height in meter above see level of the HHL file.
-
-#### 2.5.2 How to access the longitude and latitude of a grid point
-
-The CLON/CLAT file stores the longitude and latitude of the center points of each triangle on the horizontal grid.
-### 🚧  **Temporary Notice Work in Progress**
-When opening a data set in a jupyter notebook the load function includes fetching the CLON/CLAT values. To retrieve CLON/CLAT without a python environment, see section 2.7.
-
-
-### 2.6 Example Notebooks: From Retrieval to Visualization
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
@@ -194,11 +178,11 @@ When opening a data set in a jupyter notebook the load function includes fetchin
   </a>
 </p>
 
-### 2.7 Retrieving Forecasts via REST API
+### 2.6 Retrieving Forecasts via REST API
 
 If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://sys-data.int.bgdi.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters.
 
-#### 2.7.1 Submitting a POST Request
+#### 2.6.1 Submitting a POST Request
 
 Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
@@ -222,7 +206,7 @@ Each parameter in the request body serves the following purpose:
 - `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
 - `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
 
-#### 2.7.2 Downloading the Forecast Data
+#### 2.6.2 Downloading the Forecast Data
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
 Download the GRIB file using the following command:
 ```
@@ -230,10 +214,56 @@ wget -O <desired_filename> “<pre-signed URL>”
 ```
 Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
-#### 2.7.3 Installing ecCodes and COSMO definitions
+### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
-Once you have a GRIB file, you need a tool to read it. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
-By default, the GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
+Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
+the center point coordinates of each triangle on the horizontal grid.
+
+> ❗ **NOTE**: The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
+
+#### 2.7.1 Accessing Vertical Grid Parameters
+
+In the static vertical file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
+
+1. Submit a GET request specifying the collection you want to retrieve the static vertical files from (e.g., `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS):
+```
+curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
+```
+2. Locate under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+3. Download the file with:
+```
+wget -O <desired_filename> “<pre-signed URL>”
+```
+4. Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
+5. Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
+    - **generalVertical**: The value of `level` corresponds directly to a half level in the HHL file and gives the height in meters above sea level.
+    - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
+    - **Other types of level**: These are usually specified directly in meters and are self-explanatory.
+
+#### 2.7.2 Accessing Horizontal Grid Parameters
+
+> ❗ **NOTE**: We recommend inexperienced GRIB file users to take a look at the provided [Jupyter Notebooks](https://github.com/MeteoSwiss/opendata-nwp-demos). The data retrieval with the Python API includes fetching longitude and latitude.
+
+The static horizontal file stores the longitude and latitude of the center points of each triangle in the horizontal grid. To retrieve this information, follow the steps below:
+
+1. Submit a GET request specifying the collection you want to download the static horizontal files from (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
+```
+curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
+```
+2. Locate under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+3. Download the file with:
+```
+wget -O <desired_filename> “<pre-signed URL>”
+```
+4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
+
+### 2.8 Reading Forecast Files Using ecCodes
+
+Once you have the desired GRIB files, you need a tool to read them. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
+
+#### 2.8.1 Installing ecCodes and COSMO definitions
+
+By default, a GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
 In order to install them, apply the steps below.
 
 - Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder `<name_of_your_folder>`.
@@ -252,7 +282,7 @@ export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/defini
 > ❗ **NOTE**:
 > This command must be executed every time you start a new terminal session.
 
-#### 2.7.4 Decoding GRIB Files with ecCodes
+#### 2.8.2 Decoding GRIB Files with ecCodes
 
 This section provides a brief introduction to decoding GRIB files using **ecCodes**.
 For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
@@ -289,7 +319,6 @@ grib_dump -w key1=value1,key2=value2 filename.grib
 
 > ⚠️ **WARNING**:
 > Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
-
 
 <br>
 
