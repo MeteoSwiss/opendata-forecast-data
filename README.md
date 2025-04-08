@@ -186,7 +186,7 @@ If users prefer not to use the provided library to load the data, they can retri
 
 Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
-curl -X POST "https://sys-data.int.bgdi.ch/api/stac/v1/search" \
+curl -X POST "https://data.geo.admin.ch/api/stac/v1/search" \
      -H "Content-Type: application/json" \
      -d '{
             "collections": [
@@ -227,7 +227,7 @@ In the static vertical file, the heights of the half levels of the vertical grid
 
 1. Submit a GET request specifying the collection you want to retrieve the static vertical files from (e.g., `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS):
 ```
-curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
+curl -X GET https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
 2. Locate under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
 3. Download the file with:
@@ -248,7 +248,7 @@ The static horizontal file stores the longitude and latitude of the center point
 
 1. Submit a GET request specifying the collection you want to download the static horizontal files from (eg. `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS).
 ```
-curl -X GET https://sys-data.int.bgdi.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
+curl -X GET https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
 2. Locate under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
 3. Download the file with:
