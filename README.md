@@ -212,13 +212,13 @@ Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-After the dowload you may want to check your forecast data's integrity.
+After the download you may want to check your forecast data's integrity.
 <details>
 <summary> Verify Data Integrity</summary>
 
 To ensure the downloaded file is not corrupted, generate its SHA-256 hash value and compare it to the official checksum provided within the `curl` tool.
 
-1. Open a Terminal and run the follwoing command to generate the checksum of the downloaded file:
+1. Open a Terminal and run the following command to generate the checksum of the downloaded file:
 ```
 sha256sum <downloaded_filename>
 ```
