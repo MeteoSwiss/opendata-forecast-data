@@ -159,14 +159,14 @@ The following tables summarize the volume of the different forecast files for **
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
 | Deterministic| 199.0 Bytes - 2.2 MiB| 19.7 - 177.4 MiB|
-| Perturbed | 21.9 MiB - 1.7 GiB | 1.9 KiB - 1.7 GiB |
+| Perturbed | 1.9 KiB - 22.4 MiB | 197.1 MiB - 1.7 GiB |
 
 
 **ICON-CH2-EPS Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
-| Deterministic| 175.0 Bytes - 43.9 MiB| 199.0 Bytes - 43.9 MiB|
-| Perturbed | 3.4 KiB - 877.5 MiB | 3.9 KiB - 877.5 MiB |
+| Deterministic| 175.0 Bytes - 564.7 KiB| 4.9 MiB - 43.9 MiB|
+| Perturbed | 3.4 KiB - 11 MiB | 97.5 MiB - 877.5 MiB |
 
 ### 2.4 Example Notebooks: From Retrieval to Visualization
 
