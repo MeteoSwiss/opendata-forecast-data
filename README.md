@@ -219,7 +219,7 @@ After downloading your forecast data, it's good practice to verify its integrity
 To ensure the downloaded file is not corrupted, compute its SHA-256 hash and verify it against the checksum provided in the file's header field.
 
 **Steps:**
-1. Open a Terminal and generate the SHA-256 checksum of the downloaded file:
+1. Open a terminal and generate the SHA-256 checksum of the downloaded file:
 ```
 sha256sum <downloaded_filename>
 ```
