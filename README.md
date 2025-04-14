@@ -224,11 +224,10 @@ To ensure the downloaded file is not corrupted, compute its SHA-256 hash and ver
 sha256sum <downloaded_filename>
 ```
 
-2. Use the following command to retrieve the official checksum:
+2. Retrieve the checksum from the file’s header field `x-amz-meta-sha256` using the following command:
 ```
-curl -i <pre-signed URL>
+curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
 ```
-3. After a successful request the provided checksum is located under the  `x-amz-meta-sha256` key.
 
 4. Compare both hash values. If they match, the forecast data is save to use.
 
