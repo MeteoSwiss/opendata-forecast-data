@@ -229,7 +229,7 @@ sha256sum <downloaded_filename>
 curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
 ```
 
-4. Compare both hash values. If they match, the forecast data is save to use.
+3. Compare the two hash values. If they match, your forecast data file is safe to use.
 
 </details>
 
