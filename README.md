@@ -57,7 +57,7 @@ See e.g. MeteoSwiss' [...](...).
 
 ## 2. Numerical Weather Forecasting Model Data
 
-MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast atmospheric changes in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
+MeteoSwiss uses two model setups based on the [ICON](https://www.icon-model.org/) model, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast the atmospheric state in Switzerland and its surroundings over a longer period than nowcasting, providing predictions for up to five days. Both models include
 [ensemble data assimilation](https://www.meteoswiss.admin.ch/weather/warning-and-forecasting-systems/icon-forecasting-systems/ensemble-data-assimilation.html).
 
 The documentation covers the following topics:
@@ -75,13 +75,13 @@ The documentation covers the following topics:
 | **Attributes**| **ICON-CH1-EPS** | **ICON-CH2-EPS**|
 |-----------|------------------|-----------------|
 | Collection |[ch.meteoschweiz.ogd-forecasting-icon-ch1](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) | [ch.meteoschweiz.ogd-forecasting-icon-ch2](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en) |
-| Horizontal Grid Size | 1 km | 2.1 km |
+| Horizontal Grid Size | approx. 1 km | approx. 2.1 km |
 | Ensemble Members | 11 | 21 |
 | Forecast Period | 33 h | 120 h |
 | Grid | Native icosahedral | Native icosahedral |
-| Temporal Resolution |  1 h | 1 h |
-| Model Run Interval | every 3 h | every 6 h |
-| Format | GRIB edition 2 | GRIB edition 2 |
+| Temporal Output Resolution |  1 h | 1 h |
+| New Model Run (Initialization) | every 3 h | every 6 h |
+| Output Data Format | GRIB edition 2 | GRIB edition 2 |
 
 
 ### 2.2 Available Parameters
@@ -92,12 +92,13 @@ Users can find information about available parameters, including metadata about 
 
 #### 2.2.1 Parameter Metadata
 
-The parameter metadata is part of each GRIB file.
-
+A complete set of metadata describing the corresponding parameter is encoded in each record of the GRIB files.
+Please refer to [section 2.7.2 Decoding GRIB Files with ecCodes](#272-decoding-grib-files-with-eccodes)
 
 ### 2.3 Accessing Forecast Data
 
-Users can access forecast model data from the last **24 hours**. Data older than this is no longer available. The data in each collection is described in the [Model Specification table](#21-model-specifications).
+The data provided in the two collections described in the [Model Specification table](#21-model-specifications) is accessible for **24 hours**.
+Data older than this is no longer available.
 
 > ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
@@ -130,16 +131,32 @@ For example, vertical velocity is stored at multiple vertical levels, while the 
 
 #### 2.4.1 Vertical Grid
 
-The vertical grid above the surface is a height-based coordinate system that follows the terrain and is divided into multiple layers. The closer the layer is to
-the surface, the narrower the layers are, as shown in the image below.
-The so-called half levels align with vertical grid points, while the full levels represent an averaged value over a vertical interval.
-There are 81 discrete half levels and 80 full levels in our data.
+The vertical grid above the surface is a height-based coordinate system that describes terrain-following model levels. The closer the levels are to
+the surface, the narrower the layers they define, as shown in the image below. The model levels gradually change into levels of constant height as the distance from the surface increases.
+Each grid box is delimmited at the top and bottom by so-called half levels of the grid, while the full levels are aligned with the center of the grid box.
+The vertical grid uses a Lorenz-type staggering, meaning that some parameters are defined at full levels and others, e.g. the vertical velocity `W`, at full levels.
+There are 81 discrete half levels and 80 full levels in our data. The levels are numbered from top to bottom.
 
 <div align=center>
 <img src="Images/VerticalLayers.png" width="550"/>
 
 Illustration of ICON's vertical levels, Working with the ICON Model 2024, Figure 3.2
 </div>
+
+In addition to the vertical grid above the surface (half and full levels), there is also a grid below the land surface to describe parameters as the soil temperature for example.
+In the provided model data, some variables are also defined on a surface (e.g. total precipitation), or at a specific height above ground (e.g. temperature at 2m).
+To determine the vertical positioning of a parameter and the units corresponding to the vertical surface type, inspect the GRIB2 key `typeOfLevel`:
+
+* `generalVertical`: half levels (-)
+
+* `generalVerticalLayer`: full levels (-)
+
+* `depthBelowLandLayer`: depth below surface (m)
+
+* `surface`: ground or water surface (-)
+
+* `heightAboveGround`: specific height above ground (m)
+
 
 Most parameters are stored on full vertical levels, while some — such as the vertical velocity `W` — are stored on half (staggered) levels.
 To determine the vertical positioning of a parameter, inspect the GRIB2 key `typeOfLevel`:
@@ -152,22 +169,25 @@ For details on reading GRIB key values, see the section [Section 2.7.4 Decoding 
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-In addition to the vertical grid above the surface, there is also a grid below the land surface. In this case, the **level numbers correpond directly to depths in meters below ground**. For example, the parameter "soil temperature" (abbreviated as `T_SO`) is defined using this subsurface vertical structure.
 
 #### 2.4.2 Horizontal Grid
 
-The horizontal grid of ICON-CH1-EPS and ICON-CH2-EPS model is based on a native icosahedral grid inherited by the original ICON model grid (illustrated below).
+The horizontal grid of the ICON-CH1-EPS and ICON-CH2-EPS models is based on a native icosahedral grid used by the ICON model (illustration below).
 
 <div align=center>
 <img src="Images/IcosahedralGrid.png" width="300"/>
 
-Illustration of the grid construction, Working with the ICON Model, Figure 2.1
+Illustration of the ICON grid structure, Working with the ICON Model, Figure 2.1
 </div>
 
-Since the provided data is given in the native grid, note that the grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices. Therefore, the longitude and latitude are based in the middle of each triangle on the grid mentioned before. For more detailed information on
+Since the provided data is defined on the native grid, the horizontal grid points correspond to the **center of the circumcircle of each triangle** and **not** to the vertices.
+Therefore, the longitude and latitude information corresponds to the middle of each triangle. For more detailed information on
 the horizontal grid, read section 2.1 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
-### 2.5 Example Notebooks: From Retrieval to Visualization
+### 2.5 Retrieving, Handling, and Visualizing Forecasts using Python
+
+We provide a Python library to access the data and perform some processing tasks. You can find some simple examples on how to get
+and use the model forecast data in the form of Jupyter notebooks:
 
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -180,7 +200,7 @@ the horizontal grid, read section 2.1 in [Working with the ICON Model](https://w
 
 ### 2.6 Retrieving Forecasts via REST API
 
-If users prefer not to use the provided library to load the data, they can retrieve datasets directly via the [REST API](https://data.geo.admin.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, variables, and other customizable parameters.
+If users prefer not to use the provided Python library to load the data, they can retrieve datasets directly via the [REST API](https://data.geo.admin.ch/api/stac/static/spec/v1/apitransactional.html#tag/Data/operation/getAsset) by following the step-by-step instructions in this section to obtain forecast data for specific models, parameters, and other customizable variables.
 
 #### 2.6.1 Submitting a POST Request
 
@@ -200,23 +220,23 @@ curl -X POST "https://data.geo.admin.ch/api/stac/v1/search" \
 ```
 
 Each parameter in the request body serves the following purpose:
-- `collections`: Defines the forecast model to use (`ICON-CH1-EPS` or `ICON-CH2-EPS`).
+- `collections`: Defines the forecast model to retrieve (`ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS and `ch.meteoschweiz.ogd-forecasting-icon-ch2` for ICON-CH2-EPS).
 - `forecast:reference_datetime`: Specifies the desired forecast initialization time (e.g., `2025-03-12T12:00:00Z`).
 - `forecast:variable`: Indicates the meteorological parameter of interest (`TOT_PREC` for total precipitation, for example).
-- `forecast:perturbed`: Boolean flag determining if the data is deterministic (`false`) or ensemble-based.
-- `forecast:horizon`: Defines the lead time of the forecast in ISO 8601 duration format (`P0DT00H00M00S` for instant data).
+- `forecast:perturbed`: Boolean flag determining if the request is for deterministic (`false`) or ensemble (`true`) data.
+- `forecast:horizon`: Defines the forecast lead time to retrieve in ISO 8601 duration format (`P0DT00H00M00S` for data at +0h lead time, i.e. initialization).
 
 #### 2.6.2 Downloading the Forecast Data
 Upon a successful request, the response will contain a dictionary of metadata, including forecast file links under the `assets` key. Locate the `href` field containing the pre-signed URL.
-Download the GRIB file using the following command:
+Download the GRIB file containing the forecast data using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-Once downloaded, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+Once downloaded, proceed with decoding the GRIB file. A brief explanation on decoding GRIB can be found in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
-Besides the current forecast files, each catalog contains two static files. They store permanent information about the height of the half levels (HHL) in the vertical grid and
+Besides the current forecast files, each catalog contains two static files. They store constant information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle on the horizontal grid.
 
 > ❗ **NOTE**: The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
