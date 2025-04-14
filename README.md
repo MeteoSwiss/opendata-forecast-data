@@ -108,15 +108,15 @@ The following tables summarize the volume of the different forecast files for **
 **ICON-CH1 Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
-| Deterministic| 2.1 - 2.2 MiB| 74.5 - 177.4 MiB|
-| Perturbed | 21.9 - 22. 5 MiB | 1.3 - 1.7 GiB |
+| Deterministic| 199.0 Bytes - 2.2 MiB| 19.7 - 177.4 Mi|
+| Perturbed | 1.9 KiB - 22.4 MiB | 197.1 MiB - 1.7 GiB |
 
 
 **ICON-CH2 Data Volume**
 | | Single-Level Files| Multi-Level Files|
 |-----------|------------------|-----------------|
-| Deterministic| 509.2 - 558.0 KiB| 17.9 - 43.9 MiB|
-| Perturbed | 10.0 - 10-9 MiB | 360.9 - 877.5 MiB |
+| Deterministic|  175.0 Bytes - 564.7 KiB| 4.9 MiB - 43.9 Mi|
+| Perturbed | 3.4 KiB - 11 MiB | 97.5 MiB - 877.5 MiB |
 
 
 ### 2.4 3D Grid Structure and Representation
