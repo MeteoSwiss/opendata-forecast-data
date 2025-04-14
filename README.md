@@ -235,7 +235,7 @@ curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
 
 <br />
 
-Once downloaded and verified, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+Once the file is verified, you can proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
