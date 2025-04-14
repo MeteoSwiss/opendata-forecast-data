@@ -212,7 +212,7 @@ Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-After the download you may want to check your forecast data's integrity.
+After downloading your forecast data, it's good practice to verify its integrity before use.
 <details>
 <summary> Verify Data Integrity</summary>
 
