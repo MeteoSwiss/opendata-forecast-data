@@ -212,30 +212,30 @@ Download the GRIB file using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-After the dowload you may want to check your forecast data's integrity.
+After downloading your forecast data, it's good practice to verify its integrity before use.
 <details>
 <summary> Verify Data Integrity</summary>
 
-To ensure the downloaded file is not corrupted, generate its SHA-256 hash value and compare it to the official checksum provided within the `curl` tool.
+To ensure the downloaded file is not corrupted, compute its SHA-256 hash and verify it against the checksum provided in the file's header field.
 
-1. Open a Terminal and run the follwoing command to generate the checksum of the downloaded file:
+**Steps:**
+1. Open a Terminal and run the following command to generate the checksum of the downloaded file:
 ```
 sha256sum <downloaded_filename>
 ```
 
-2. Use the following command to retrieve the official checksum:
+2. Retrieve the checksum from the file’s header field `x-amz-meta-sha256` using the following command:
 ```
-curl -i <pre-signed URL>
+curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
 ```
-3. After a successful request the provided checksum is located under the  `x-amz-meta-sha256` key.
 
-4. Compare both hash values. If they match, the forecast data is save to use.
+3. Compare the two hash values. If they match, your forecast data file is safe to use.
 
 </details>
 
 <br />
 
-Once downloaded and verified, proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+Once the file is verified, you can proceed with decoding the GRIB file using the instructions in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
