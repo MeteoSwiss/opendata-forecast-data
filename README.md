@@ -252,9 +252,6 @@ curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
 
 3. Compare the two hash values. If they match, your forecast data file is safe to use.
 
-</details>
-
-<br />
 
 Once the file is verified, you can proceed with decoding the GRIB file, using e.g. the instructions in [2.8.2 Decoding GRIB Files with ecCodes](#282-decoding-grib-files-with-eccodes).
 
