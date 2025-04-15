@@ -156,7 +156,7 @@ Once the file is verified, you can proceed with decoding the GRIB file using the
 
 #### 4. Accessing Static Grid Information: Height, Longitude, and Latitude
 
-The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files. Users can find static grid information in the catalog in the category "Assets" of the two provided collections [ICON-CH1-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) and [ICON-CH2-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en).
+The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files. Users can find static grid information in the catalog under the "Assets" category of the two provided collections [ICON-CH1-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) and [ICON-CH2-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en).
 
 <details>
 <summary> 4.1 Accessing Vertical Grid Parameters </summary>
