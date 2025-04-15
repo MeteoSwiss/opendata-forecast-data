@@ -121,13 +121,7 @@ The following tables summarize the volume of the different forecast files for **
 
 
 ### 2.4 3D Grid Structure and Representation
-The model data is structured on both a horizontal and vertical grid. While some parameters extend across the entire three-dimensional grid, others are only available at specific vertical levels.
-Parameters are classified as either **single-level** or **multi-level**:
-- **Single-level parameters** contain data at a specific vertical level.
-- **Multi-level parameters** extend across multiple vertical layers.
-
-For example, vertical velocity is stored at multiple vertical levels, while the two-meter temperature is available only at a single vertical level.
-
+The model data is structured on both a horizontal and vertical grid.
 
 #### 2.4.1 Vertical Grid
 
@@ -157,15 +151,9 @@ To determine the vertical positioning of a parameter and the units corresponding
 
 * `heightAboveGround`: specific height above ground (m)
 
-
-Most parameters are stored on full vertical levels, while some — such as the vertical velocity `W` — are stored on half (staggered) levels.
-To determine the vertical positioning of a parameter, inspect the GRIB2 key `typeOfLevel`:
-
-* `generalVertical` indicates half levels
-
-* `generalVerticalLayer` indicates full levels
-
-For details on reading GRIB key values, see [2.8.2 Decoding GRIB Files with ecCodes](#282-decoding-grib-files-with-eccodes).
+Parameters are classified as either **single-level** or **multi-level**:
+- **Single-level parameters** contain data at a specific vertical level.
+- **Multi-level parameters** extend across multiple vertical layers.
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
@@ -204,7 +192,7 @@ If users prefer not to use the provided Python library to load the data, they ca
 
 #### 2.6.1 Submitting a POST Request
 
-Filtering and querying forecast data must be done using a **POST** request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
+Filtering and querying forecast data must be done using a `POST` request. To retrieve a forecast, use a tool like `curl` and send the request to the API endpoint:
 ```
 curl -X POST "https://data.geo.admin.ch/api/stac/v1/search" \
      -H "Content-Type: application/json" \
@@ -235,9 +223,9 @@ wget -O <desired_filename> “<pre-signed URL>”
 
 After downloading your forecast data, it's good practice to verify its integrity before use.
 
-#### 2.6.3 Verify Data Integrity
+#### 2.6.3 Verifying the Data Integrity
 
-To ensure the downloaded file is not corrupted, compute its SHA-256 hash and verify it against the checksum provided in the file's header field.
+To ensure that the downloaded file is not corrupted, compute its SHA-256 hash and verify it against the checksum provided in the file's header field.
 
 **Steps:**
 1. Open a terminal and generate the SHA-256 checksum of the downloaded file:
@@ -257,25 +245,25 @@ Once the file is verified, you can proceed with decoding the GRIB file, using e.
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
-Besides the current forecast files, each catalog contains two static files. They store constant information about the height of the half levels (HHL) in the vertical grid and
+Besides the current forecast files, each collection contains two static files. They store constant information about the height of the half levels (HHL) in the vertical grid and
 the center point coordinates of each triangle on the horizontal grid.
 
 > ❗ **NOTE**: The forecast GRIB files contain no information on height, longitude and latitude. They have to be determined via the static vertical and horizontal grid parameter files.
 
 #### 2.7.1 Accessing Vertical Grid Parameters
 
-In the static vertical file, the heights of the half levels of the vertical grid are provided in meters above see level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
+In the static vertical file, the heights of the half levels of the vertical grid are provided in meters above mean sea level. In order to associate a value from a data file (for a given parameter) to a height in meters above sea level, follow the steps below:
 
 1. Submit a GET request specifying the collection you want to retrieve the static vertical files from (e.g., `ch.meteoschweiz.ogd-forecasting-icon-ch1` for ICON-CH1-EPS):
 ```
 curl -X GET https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
-2. Locate under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+2. Locate the `href` field under `assets` in `id: vertical_constants_icon-ch1-eps.grib2` and copy the pre-signed URL.
 3. Download the file with:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-4. Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the HHL file.
+4. Once the static GRIB file is downloaded, verify that the `uuidOfHGrid` (Universally Unique Identifier for the horizontal grid) key in the data file matches the one in the HHL file.
 5. Retrieve the value for the `level` key and inspect the `typeOfLevel` key by listing the GRIB messages:
     - **generalVertical**: The value of `level` corresponds to a half level in the HHL file. For each level (i.e., each GRIB message), the variable `h` provides the height in meters above sea level for every grid point.
     - **generalVerticalLayer**: The `level` value corresponds to a full level. To obtain the height in meters above sea level, average the heights of the two surrounding half levels (above and below).
@@ -291,12 +279,12 @@ The static horizontal file stores the longitude and latitude of the center point
 ```
 curl -X GET https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1/assets
 ```
-2. Locate under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` the `href` field and copy the pre-signed URL.
+2. Locate the `href` field under `assets` in `id: horizontal_constants_icon-ch1-eps.grib2` and copy the pre-signed URL.
 3. Download the file with:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier) key in the data file matches the one in the static horizontal file.
+4. Once the static GRIB file is downloaded, ensure that the `uuidOfHGrid` (Universally Unique Identifier for the horizonal grid) key in the data file matches the one in the static horizontal file.
 
 ### 2.8 Reading Forecast Files Using ecCodes
 
