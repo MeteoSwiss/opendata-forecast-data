@@ -165,7 +165,7 @@ To determine the vertical positioning of a parameter, inspect the GRIB2 key `typ
 
 * `generalVerticalLayer` indicates full levels
 
-For details on reading GRIB key values, see the section [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+For details on reading GRIB key values, see [2.8.2 Decoding GRIB Files with ecCodes](#282-decoding-grib-files-with-eccodes).
 
 For more detailed information on the vertical grid, read section 3.4 in [Working with the ICON Model](https://www.dwd.de/DE/leistungen/nwv_icon_tutorial/pdf_einzelbaende/icon_tutorial2024.pdf?__blob=publicationFile&v=3).
 
@@ -232,7 +232,31 @@ Download the GRIB file containing the forecast data using the following command:
 ```
 wget -O <desired_filename> “<pre-signed URL>”
 ```
-Once downloaded, proceed with decoding the GRIB file. A brief explanation on decoding GRIB can be found in [Section 2.7.4 Decoding GRIB Files with ecCodes](#274-decoding-grib-files-with-eccodes).
+
+After downloading your forecast data, it's good practice to verify its integrity before use.
+
+#### 2.6.3 Verify Data Integrity
+
+To ensure the downloaded file is not corrupted, compute its SHA-256 hash and verify it against the checksum provided in the file's header field.
+
+**Steps:**
+1. Open a terminal and generate the SHA-256 checksum of the downloaded file:
+```
+sha256sum <downloaded_filename>
+```
+
+2. Retrieve the checksum from the file’s header field `x-amz-meta-sha256` using the following command:
+```
+curl -s -i "<pre-signed URL>" | awk -F': ' '/x-amz-meta-sha256/ {print $0}'
+```
+
+3. Compare the two hash values. If they match, your forecast data file is safe to use.
+
+</details>
+
+<br />
+
+Once the file is verified, you can proceed with decoding the GRIB file, using e.g. the instructions in [2.8.2 Decoding GRIB Files with ecCodes](#282-decoding-grib-files-with-eccodes).
 
 ### 2.7 Accessing Static Grid Information: Height, Longitude, and Latitude
 
