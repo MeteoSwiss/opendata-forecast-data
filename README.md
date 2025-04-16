@@ -78,22 +78,33 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 MeteoSwiss provides various output parameters of the weather model ICON. Users can find a complete overview of the parameters including metadata in the collection level assets of the above collections.
 
-🚧 TODO: add image
+The parameter overview can be found in the bottem right of the following image.
+
+![browser-ch1-assets](Images/browser-ch1-assets.png)
+
+There are various ways to obtain MeteoSwiss's ICON model data. Depending on your preference and your experience you can choose from the follwoing three methods:
+- Retrieving Forecasts via Python API
+- Retrieving Forecasts via REST API
+- Retrieving Forecasts via Browser
+
+A description of each of these options are provided below.
 
 >❗**NOTE**: Users can access forecast model data from the last **24 hours**. Data older than this is no longer available.
 
 <details open>
 <summary> <b> Retrieving Forecasts via Python API </b> </summary>
-🚧 TODO: describe get & download from ogd, link to notebooks
+
+One of the easiest ways to access the ICON model data is to use MeteoSwiss's [meteodata-lab](https://meteoswiss.github.io/meteodata-lab/) library - a convenient tool to simplify accessing and working with numerical weather model data. The library provides two functions to retrieve weather data: `get_from_ogd` for real-time access and `download_from_ogd` to download the data to your device. Both functions are described further and demonstarted in Jupyter Notebooks. To explore them click on the following GitHub Repository button.
 
 
-<p>
+<p> <center>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 52px; vertical-align: middle; padding-right: 20px;">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://github.com/MeteoSwiss/opendata-nwp-demos">
     <img src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github" style="height: 22px; vertical-align: middle;">
   </a>
+  </center>
 </p>
 </details>
 
@@ -202,9 +213,9 @@ wget -O <desired_filename> “<pre-signed URL>”
 <details>
 <summary> <b>  Retrieving Forecasts via Browser </b> </summary>
 
-If users prefer to use an interface to retreive the forecast GRIB files. They can easily download the data directly through the browser using the STAC catalog of model [ICON-CH1-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) or [ICON-CH2-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en).
+If users prefer to use an interface to retreive the forecast GRIB files. They can easily download the data directly through the browser using the STAC catalog of the model [ICON-CH1-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) or [ICON-CH2-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en).
 
-Screenshot of the STAC catalog of the model ICON-CH1-EPS
+The Screenshot below shows the download button of the STAC catalog of the model ICON-CH1-EPS.
 
 ![browser-ch1-download.png](./Images/browser-ch1-download.png)
 
