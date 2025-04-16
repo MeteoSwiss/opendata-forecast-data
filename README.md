@@ -76,7 +76,7 @@ MeteoSwiss uses two models, **ICON-CH1-EPS** and **ICON-CH2-EPS**, to forecast a
 
 ### 🚧  **Temporary Notice Work in Progress**
 
-MeteoSwiss provides various output parameters of the weather model ICON. Users can find a complete list including metadata in the collection level assets of the above collections.
+MeteoSwiss provides various output parameters of the weather model ICON. Users can find a complete overview of the parameters including metadata in the collection level assets of the above collections.
 
 🚧 TODO: add image
 
@@ -202,14 +202,20 @@ wget -O <desired_filename> “<pre-signed URL>”
 <details>
 <summary> <b>  Retrieving Forecasts via Browser </b> </summary>
 
-🚧 TODO: screen shot of the browser and link to the catalog
+If users prefer to use an interface to retreive the forecast GRIB files. They can easily download the data directly through the browser using the STAC catalog of model [ICON-CH1-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch1?.language=en) or [ICON-CH2-EPS](https://data.geo.admin.ch/browser/#/collections/ch.meteoschweiz.ogd-forecasting-icon-ch2?.language=en).
+
+Screenshot of the STAC catalog of the model ICON-CH1-EPS
+
+![browser-ch1-download.png](./Images/browser-ch1-download.png)
+
+Simply click on the provided download button and the browser will handle the rest. The GRIB files are saved into your Downloads folder or the location where your browser stores downloaded files. You can access them there once the download is completed.
+
 </details>
 
 ### Data Structure
 <details open>
 <summary> <b> Overview </b> </summary>
-
-🚧 TODO: mock up + warning about boundary
+🚧 TODO: mock up
 </details>
 
 <details>
