@@ -100,6 +100,8 @@ Please refer to [section 2.7.2 Decoding GRIB Files with ecCodes](#272-decoding-g
 The data provided in the two collections described in the [Model Specification table](#21-model-specifications) is accessible for **24 hours**.
 Data older than this is no longer available.
 
+The data is provided in GRIB format, which is a binary format used internationally and defined by WMO.
+
 > ⚠️ **WARNING**: Data located at the boundary of the spatial domain may be random.
 
 #### 2.3.1 Forecast Data Volume
@@ -288,39 +290,42 @@ wget -O <desired_filename> “<pre-signed URL>”
 
 ### 2.8 Reading Forecast Files Using ecCodes
 
-Once you have the desired GRIB files, you need a tool to read them. We recommend installing [ecCodes](https://confluence.ecmwf.int/display/UDOC/How+to+install+ecCodes+with+Python+bindings+in+conda+-+ecCodes+FAQ) from ECMWF.
+Once you have the desired GRIB files, you need a tool to decode the GRIB records. Each GRIB record holds the data for one parameter
+at one time and at one level. More information about the data format can be found in the Manual on Codes published by WMO.
+We recommend installing ecCodes from ECMWF to read the data. Follow the installation guide provided [here](https://confluence.ecmwf.int/display/ECC/ecCodes+installation).
 
 #### 2.8.1 Installing ecCodes and COSMO definitions
 
-By default, a GRIB file shows the short names defined by ECMWF. However, the ICON model has its own definitions.
-In order to install them, apply the steps below.
+The GRIB format relies on tables and templates to encode the meta data. Those tables allow for example the mapping of a triplet of
+numbers encoding a parameter to a descriptive string (`shortName`). The international tables are provided in ecCodes. Additionally ,
+local definitions can be defined by each center. ECMWF specific defintions are also shiped with ecCodes. Some of the provided ICON data
+also requires the local defintions of the COSMO consortium.
 
-- Clone the GitHub repository [eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources) into folder `<name_of_your_folder>`.
-- Clone the GitHub repository [ecmwf/eccodes](https://github.com/ecmwf/eccodes/) into the same folder `<name_of_your_folder>`.
+In order to provide a consistent and comprehensive set of GRIB tables, check the ecCodes version you installed and clone the
+**corresponding version** of the GRIB tables in the same folder:
 
-> ⚠️ **WARNING**:
-> Make sure both repositories are in the same folder and run on the same version.
+- Releases for [COSMO-ORG/eccodes-cosmo-resources](https://github.com/COSMO-ORG/eccodes-cosmo-resources/releases)
+- Releases for [ecmwf/eccodes](https://github.com/ecmwf/eccodes/releases)
 
-Finally, execute the following command to set the GRIB definition path:
-
+Then, set `GRIB_DEFINITION_PATH` for ecCodes to use those tables (add it to your `.bashrc` to make if availabe in each terminal session):
 
 ```
 export GRIB_DEFINITION_PATH=<name_of_your_folder>/eccodes-cosmo-recources/definitions:<name_of_your_folder>r/eccodes/definitions
 ```
 
-> ❗ **NOTE**:
-> This command must be executed every time you start a new terminal session.
-
-#### 2.8.2 Decoding GRIB Files with ecCodes
-
-This section provides a brief introduction to decoding GRIB files using **ecCodes**.
-For more details, refer to the [ECMWF ecCodes documentation](https://events.ecmwf.int/event/363/contributions/4110/attachments/2346/4098/intro_grib_decoding_2023-10-31.pdf).
-
-Use the following commands to
-- Check ecCodes installation details:
+To check the details of your information, you can run
 ```
 codes_info
 ```
+
+#### 2.8.2 Decoding GRIB Files with ecCodes
+
+This section provides a brief introduction to decoding GRIB files using command-line tools provided by **ecCodes**.
+There are also C, Fortran 90 and Python interfaces, please refer to the [ecCodes documentation](https://confluence.ecmwf.int/display/ECC).
+
+Please look up the use of the command-line tools in the [ECMWF documentation](https://confluence.ecmwf.int/display/ECC/GRIB+tools).
+
+Some useful commands are:
 
 - List all the GRIB messages in a file:
 ```
@@ -340,16 +345,12 @@ grib_ls -p key1,key2 filename.grib
 - Get a detailed view of the content of all GRIB messages:
 ```
 grib_dump filename.grib
+
 ```
 - Get a detailed view of GRIB messages with filters:
 ```
 grib_dump -w key1=value1,key2=value2 filename.grib
 ```
-
-> ⚠️ **WARNING**:
-> Some variables in the ICON model are not included in the WMO standard definitions but are instead defined in ICON's local GRIB definitions. If a variable is missing, users should check the [eccodes-cosmo-resources files](https://github.com/COSMO-ORG/eccodes-cosmo-resources/blob/master/definitions/grib2/localConcepts/edzw/shortName.def).
-
-<br>
 
 ## 3. Local forecast data
 ...
